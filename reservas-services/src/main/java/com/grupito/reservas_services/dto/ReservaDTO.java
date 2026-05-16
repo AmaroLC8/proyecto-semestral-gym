@@ -39,6 +39,6 @@ public class ReservaDTO {
      */
     public static ReservaDTO fromModel (Reservas r){
         if (r == null) return null;
-        return new ReservaDTO(r.getId(), r.getId_socio(), r.getFecha_hora(), r.getTipo_clase(), r.getEstado());
+        return new ReservaDTO(r.getId(), r.getIdSocio(), r.getFechaHora(), r.getTipoClase(), r.getEstado());
     }
 }

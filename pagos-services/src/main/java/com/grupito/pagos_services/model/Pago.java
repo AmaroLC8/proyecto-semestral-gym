@@ -6,6 +6,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,8 +19,15 @@ public class Pago {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private int id_socio;
+    
+    @Column(name = "id_socio")
+    private int idSocio;
+    
     private double monto;
-    private Date fecha_pago;
-    private String metodo_pago;
+    
+    @Column(name = "fecha_pago")
+    private Date fechaPago;
+    
+    @Column(name = "metodo_pago")
+    private String metodoPago;
 }

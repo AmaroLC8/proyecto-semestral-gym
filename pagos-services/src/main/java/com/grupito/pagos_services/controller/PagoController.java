@@ -87,7 +87,7 @@ public class PagoController {
         if (pago != null) {
             Map<String, Object> detalle = new HashMap<>();
             detalle.put("pago", PagoDTO.fromModel(pago));
-            detalle.put("usuario", pagoService.obtenerUsuarioPorId((long) pago.getId_socio()));
+            detalle.put("usuario", pagoService.obtenerUsuarioPorId((long) pago.getIdSocio()));
             return ResponseEntity.ok(detalle);
         } else {
             return ResponseEntity.notFound().build();

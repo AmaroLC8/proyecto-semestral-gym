@@ -17,30 +17,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity
 public class Rutina {
-    /**
-     * Identificador único de la rutina, generado automáticamente.
-     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    /**
-     * Nombre de la rutina.
-     */
     private String nombre;
-
-    /**
-     * Descripción detallada de la rutina.
-     */
     private String descripcion;
-
-    /**
-     * Duración estimada de la rutina en minutos.
-     */
     private int duracionMinutos;
-
-    /**
-     * Nivel de dificultad de la rutina (ej. principiante, intermedio, avanzado).
-     */
     private String nivelDificultad;
 }

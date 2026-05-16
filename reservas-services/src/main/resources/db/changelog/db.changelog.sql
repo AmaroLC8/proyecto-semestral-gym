@@ -1,6 +1,6 @@
 -- liquibase formatted sql
 
--- changeset gymflow:1
+-- changeset gymflow:1 endDelimiter:/
 CREATE TABLE reservas (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     id_socio INT NOT NULL,
@@ -8,8 +8,9 @@ CREATE TABLE reservas (
     tipo_clase VARCHAR(100) NOT NULL,
     estado VARCHAR(50) NOT NULL
 );
+/
 
--- changeset gymflow:2
+-- changeset gymflow:2 endDelimiter:/
 INSERT INTO reservas (id_socio, fecha_hora, tipo_clase, estado) VALUES
 (1, '2024-06-01 10:00:00', 'Yoga', 'Confirmada'),
 (2, '2024-06-01 11:00:00', 'Crossfit', 'Pendiente'),
@@ -21,3 +22,4 @@ INSERT INTO reservas (id_socio, fecha_hora, tipo_clase, estado) VALUES
 (8, '2024-06-04 20:00:00', 'Funcional', 'Confirmada'),
 (9, '2024-06-05 08:00:00', 'Natación', 'Confirmada'),
 (10, '2024-06-05 19:00:00', 'Power', 'Confirmada');
+/

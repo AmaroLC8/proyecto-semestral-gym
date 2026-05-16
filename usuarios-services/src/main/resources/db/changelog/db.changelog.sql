@@ -3,11 +3,12 @@
 -- changeset gymflow:1
 CREATE TABLE usuario (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    nombre VARCHAR(100) NOT NULL,
-    correo VARCHAR(100) NOT NULL,
+    nombre VARCHAR(100),
+    correo VARCHAR(100),
     telefono VARCHAR(20),
     tipo_membresia VARCHAR(50)
 );
+
 
 -- changeset gymflow:2
 INSERT INTO usuario (nombre, correo, telefono, tipo_membresia) VALUES 

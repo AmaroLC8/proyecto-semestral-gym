@@ -39,6 +39,6 @@ public class SeguimientoDTO {
      */
     public static SeguimientoDTO fromModel (Seguimiento s){
         if (s == null) return null;
-        return new SeguimientoDTO(s.getId(), s.getId_socio(), s.getPeso(), s.getPorcentaje_grasa(), s.getFecha_registro());
+        return new SeguimientoDTO(s.getId(), s.getIdSocio(), s.getPeso(), s.getPorcentajeGrasa(), s.getFechaRegistro());
     }
 }

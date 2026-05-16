@@ -80,7 +80,7 @@ public class SeguimientoController {
         if (seguimiento != null) {
             Map<String, Object> detalle = new HashMap<>();
             detalle.put("seguimiento", SeguimientoDTO.fromModel(seguimiento));
-            detalle.put("usuario", seguimientoService.obtenerUsuarioPorId((long) seguimiento.getId_socio()));
+            detalle.put("usuario", seguimientoService.obtenerUsuarioPorId((long) seguimiento.getIdSocio()));
             return ResponseEntity.ok(detalle);
         } else {
             return ResponseEntity.notFound().build();
