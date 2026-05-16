@@ -1,29 +1,23 @@
 -- liquibase formatted sql
 
--- changeset gym:1
+-- changeset gymflow:1
 CREATE TABLE rutina (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
-    nivel VARCHAR(50)
+    descripcion VARCHAR(255),
+    duracion_minutos INT NOT NULL,
+    nivel_dificultad VARCHAR(50) NOT NULL
 );
 
-CREATE TABLE ejercicio (
-    id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    nombre VARCHAR(100) NOT NULL,
-    series INT,
-    repeticiones INT,
-    rutina_id BIGINT,
-    CONSTRAINT fk_ejercicio_rutina FOREIGN KEY (rutina_id) REFERENCES rutina(id)
-);
-
--- changeset gym:2
-INSERT INTO rutina (nombre, nivel) VALUES 
-('Full Body A', 'Principiante'), ('Hipertrofia Piernas', 'Avanzado'), ('Torso-Pierna', 'Intermedio'), 
-('Push-Pull', 'Avanzado'), ('Cardio HIIT', 'Principiante'), ('Yoga Flow', 'Intermedio'), 
-('Crossfit WOD', 'Avanzado'), ('Resistencia', 'Intermedio'), ('Powerlifting', 'Avanzado'), ('Movilidad', 'Principiante');
-
--- changeset gym:3
-INSERT INTO ejercicio (nombre, series, repeticiones, rutina_id) VALUES 
-('Sentadillas', 4, 12, 1), ('Press Banca', 3, 10, 1), ('Peso Muerto', 3, 8, 2), 
-('Prensa', 4, 15, 2), ('Dominadas', 3, 10, 3), ('Remo con barra', 4, 12, 3), 
-('Press Militar', 3, 10, 4), ('Fondos', 3, 12, 4), ('Burpees', 5, 20, 5), ('Saltos al cajón', 5, 15, 5);
+-- changeset gymflow:2
+INSERT INTO rutina (nombre, descripcion, duracion_minutos, nivel_dificultad) VALUES
+('Full Body A', 'Rutina de cuerpo completo para comenzar.', 60, 'Principiante'),
+('Hipertrofia Piernas', 'Trabajo enfocado en fuerza e hipertrofia de piernas.', 75, 'Avanzado'),
+('Torso-Pierna', 'División equilibrada para tren superior e inferior.', 70, 'Intermedio'),
+('Push-Pull', 'Entrenamiento dividido por patrones de empuje y tirón.', 65, 'Avanzado'),
+('Cardio HIIT', 'Intervalos de alta intensidad para resistencia cardiovascular.', 30, 'Principiante'),
+('Yoga Flow', 'Secuencia de movilidad y respiración.', 45, 'Intermedio'),
+('Crossfit WOD', 'Circuito metabólico de alta intensidad.', 50, 'Avanzado'),
+('Resistencia', 'Trabajo progresivo para mejorar resistencia muscular.', 55, 'Intermedio'),
+('Powerlifting', 'Enfoque en sentadilla, banca y peso muerto.', 80, 'Avanzado'),
+('Movilidad', 'Ejercicios correctivos y rango de movimiento.', 35, 'Principiante');

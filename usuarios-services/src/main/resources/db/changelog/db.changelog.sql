@@ -1,6 +1,6 @@
---liquibase formatted sqñ
+-- liquibase formatted sql
 
---changeset admin:1
+-- changeset gymflow:1
 CREATE TABLE usuario (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
@@ -9,7 +9,7 @@ CREATE TABLE usuario (
     tipo_membresia VARCHAR(50)
 );
 
---changeset admin:2
+-- changeset gymflow:2
 INSERT INTO usuario (nombre, correo, telefono, tipo_membresia) VALUES 
 ('Alexis Sanchez', 'alexis@gym.com', '+5691111', 'Oro'),
 ('Arturo Vidal', 'king@gym.com', '+5692222', 'Plata'),
