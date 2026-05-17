@@ -6,6 +6,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -29,6 +32,8 @@ import com.grupito.pagos_services.services.PagoService;
 @RestController
 @RequestMapping("/pagos")
 public class PagoController {
+    private static final Logger logger = LoggerFactory.getLogger(PagoController.class);
+
     private final PagoService pagoService;
 
     public PagoController(PagoService pagoService) {
@@ -37,9 +42,12 @@ public class PagoController {
 
     @PostMapping
     public ResponseEntity<PagoDTO> crearPago(@RequestBody PagoDTO pagoDto) {
-        // Convierte el DTO a entidad y guarda en la base de datos
+        logger.info("Solicitud para crear pago del socio: {}, monto: {}", pagoDto.getId_socio(), pagoDto.getMonto());
+        
         Pago nuevoPago = pagoService.guardar(pagoDto.toModel());
-        // Convierte la entidad guardada de vuelta a DTO y retorna
+        
+        logger.info("Pago creado correctamente con id: {}", nuevoPago.getId());
+
         return ResponseEntity.ok(PagoDTO.fromModel(nuevoPago));
     }
 
@@ -96,8 +104,13 @@ public class PagoController {
 
     @GetMapping("/socio/{idSocio}/total")
     public ResponseEntity<Double> obtenerTotalPagosPorSocio(@PathVariable int idSocio) {
+        logger.info("Calculando total de pagos para socio: {}", idSocio);
+        
         List<Pago> pagos = pagoService.buscarPorIdSocio(idSocio);
         double total = pagos.stream().mapToDouble(Pago::getMonto).sum();
+        
+        logger.info("Total calculado para socio {}: {}", idSocio, total);
+        
         return ResponseEntity.ok(total);
     }
 
