@@ -3,33 +3,43 @@ server:
 
 spring:
   main:
-      web-application-type: reactive
+    web-application-type: reactive
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          secret-key: esta_es_mi_compleja_clave_secreta
+
   cloud:
     gateway:
-      server:
-        webflux:
-          routes:
-          - id: usuarios-service
-            uri: http://localhost:9091
-            predicates:
+      routes:
+        - id: auth-service
+          uri: http://localhost:8085
+          predicates:
+            - Path=/auth/**
+
+        - id: usuarios-service
+          uri: http://localhost:9091
+          predicates:
             - Path=/usuarios/**
 
-          - id: pagos-service
-            uri: http://localhost:9095
-            predicates:
+        - id: pagos-service
+          uri: http://localhost:9095
+          predicates:
             - Path=/pagos/**
           
-          - id: reservas-service
-            uri: http://localhost:9093
-            predicates:
+        - id: reservas-service
+          uri: http://localhost:9093
+          predicates:
             - Path=/reservas/**
           
-          - id: rutinas-service
-            uri: http://localhost:9092
-            predicates:
+        - id: rutinas-service
+          uri: http://localhost:9092
+          predicates:
             - Path=/rutinas/**
           
-          - id: seguimientos-service
-            uri: http://localhost:9094
-            predicates:
+        - id: seguimientos-service
+          uri: http://localhost:9094
+          predicates:
             - Path=/seguimientos/**
