@@ -43,3 +43,30 @@ spring:
           uri: http://localhost:9094
           predicates:
             - Path=/seguimientos/**
+        
+        - id: seguimientos-service
+          uri: http://localhost:9094
+          predicates:
+            - Path=/seguimientos/**
+
+        - id: inventario-service
+          uri: http://localhost:9096
+          predicates:
+            - Path=/inventario/**
+
+        - id: recomendaciones-service
+          uri: http://localhost:9097
+          predicates:
+            - Path=/recomendaciones/**
+
+        - id: soporte-service
+          uri: http://localhost:9098
+          predicates:
+            - Path=/soporte/**
+
+        - id: review-service
+          uri: http://localhost:9099
+          predicates:
+            - Path=/review/**
+
+
