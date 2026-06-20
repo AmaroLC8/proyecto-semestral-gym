@@ -10,7 +10,7 @@
         <artifactId>spring-boot-starter-parent</artifactId>
 
         <!-- VERSION ESTABLE -->
-        <version>3.5.7</version>
+        <version>3.3.5</version>
 
         <relativePath/>
     </parent>
