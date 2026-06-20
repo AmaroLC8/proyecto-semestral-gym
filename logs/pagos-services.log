@@ -1,0 +1,103 @@
+2026-06-20T00:17:38.510-04:00  INFO 11856 --- [pagos-services] [main] c.g.p.PagosServicesApplication           : Starting PagosServicesApplication using Java 21.0.8 with PID 11856 (C:\Users\MSI GAMING\Downloads\proyecto-semestral-gym\pagos-services\target\classes started by MSI GAMING in C:\Users\MSI GAMING\Downloads\proyecto-semestral-gym)
+2026-06-20T00:17:38.513-04:00  INFO 11856 --- [pagos-services] [main] c.g.p.PagosServicesApplication           : No active profile set, falling back to 1 default profile: "default"
+2026-06-20T00:17:40.227-04:00  INFO 11856 --- [pagos-services] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-06-20T00:17:40.421-04:00  INFO 11856 --- [pagos-services] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 176 ms. Found 1 JPA repository interface.
+2026-06-20T00:17:41.495-04:00  INFO 11856 --- [pagos-services] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 9095 (http)
+2026-06-20T00:17:41.523-04:00  INFO 11856 --- [pagos-services] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-06-20T00:17:41.525-04:00  INFO 11856 --- [pagos-services] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.48]
+2026-06-20T00:17:41.644-04:00  INFO 11856 --- [pagos-services] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-06-20T00:17:41.645-04:00  INFO 11856 --- [pagos-services] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3057 ms
+2026-06-20T00:17:42.097-04:00  INFO 11856 --- [pagos-services] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-06-20T00:17:42.427-04:00  INFO 11856 --- [pagos-services] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5a06904
+2026-06-20T00:17:42.431-04:00  INFO 11856 --- [pagos-services] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-06-20T00:17:43.011-04:00  INFO 11856 --- [pagos-services] [main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:mysql://localhost:3306/db_pagos?createDatabaseIfNotExist=true (MySQL 5.5)
+2026-06-20T00:17:43.189-04:00  INFO 11856 --- [pagos-services] [main] o.f.core.internal.command.DbValidate     : Successfully validated 1 migration (execution time 00:00.142s)
+2026-06-20T00:17:43.203-04:00  INFO 11856 --- [pagos-services] [main] o.f.core.internal.command.DbMigrate      : Current version of schema `db_pagos`: 1
+2026-06-20T00:17:43.209-04:00  INFO 11856 --- [pagos-services] [main] o.f.core.internal.command.DbMigrate      : Schema `db_pagos` is up to date. No migration necessary.
+2026-06-20T00:17:43.355-04:00  INFO 11856 --- [pagos-services] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-06-20T00:17:43.456-04:00  INFO 11856 --- [pagos-services] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.33.Final
+2026-06-20T00:17:43.516-04:00  INFO 11856 --- [pagos-services] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-06-20T00:17:44.073-04:00  INFO 11856 --- [pagos-services] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-06-20T00:17:44.170-04:00  WARN 11856 --- [pagos-services] [main] org.hibernate.dialect.Dialect            : HHH000511: The 5.5.5 version for [org.hibernate.dialect.MySQLDialect] is no longer supported, hence certain features may not work properly. The minimum supported version is 8.0.0. Check the community dialects project for available legacy versions.
+2026-06-20T00:17:44.193-04:00  INFO 11856 --- [pagos-services] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 5.5.5
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-06-20T00:17:45.217-04:00  INFO 11856 --- [pagos-services] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-06-20T00:17:45.222-04:00  INFO 11856 --- [pagos-services] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-06-20T00:17:46.271-04:00  INFO 11856 --- [pagos-services] [main] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2026-06-20T00:17:46.670-04:00  WARN 11856 --- [pagos-services] [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'modelConverterRegistrar' defined in class path resource [org/springdoc/core/configuration/SpringDocConfiguration.class]: Unsatisfied dependency expressed through method 'modelConverterRegistrar' parameter 0: Error creating bean with name 'collectionModelContentConverter' defined in class path resource [org/springdoc/core/configuration/SpringDocHateoasConfiguration.class]: Unsatisfied dependency expressed through method 'collectionModelContentConverter' parameter 0: Error creating bean with name 'hateoasHalProvider': Invocation of init method failed
+2026-06-20T00:17:46.672-04:00  INFO 11856 --- [pagos-services] [main] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-06-20T00:17:46.676-04:00  INFO 11856 --- [pagos-services] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-06-20T00:17:46.690-04:00  INFO 11856 --- [pagos-services] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-06-20T00:17:46.695-04:00  INFO 11856 --- [pagos-services] [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2026-06-20T00:17:46.715-04:00  INFO 11856 --- [pagos-services] [main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2026-06-20T00:17:46.751-04:00 ERROR 11856 --- [pagos-services] [main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+An attempt was made to call a method that does not exist. The attempt was made from the following location:
+
+    org.springdoc.core.providers.HateoasHalProvider.isHalEnabled(HateoasHalProvider.java:78)
+
+The following method did not exist:
+
+    'boolean org.springframework.boot.autoconfigure.hateoas.HateoasProperties.getUseHalAsDefaultJsonMediaType()'
+
+The calling method's class, org.springdoc.core.providers.HateoasHalProvider, was loaded from the following location:
+
+    jar:file:/C:/Users/MSI%20GAMING/.m2/repository/org/springdoc/springdoc-openapi-starter-common/2.5.0/springdoc-openapi-starter-common-2.5.0.jar!/org/springdoc/core/providers/HateoasHalProvider.class
+
+The called method's class, org.springframework.boot.autoconfigure.hateoas.HateoasProperties, is available from the following locations:
+
+    jar:file:/C:/Users/MSI%20GAMING/.m2/repository/org/springframework/boot/spring-boot-autoconfigure/3.5.7/spring-boot-autoconfigure-3.5.7.jar!/org/springframework/boot/autoconfigure/hateoas/HateoasProperties.class
+
+The called method's class hierarchy was loaded from the following locations:
+
+    org.springframework.boot.autoconfigure.hateoas.HateoasProperties: file:/C:/Users/MSI%20GAMING/.m2/repository/org/springframework/boot/spring-boot-autoconfigure/3.5.7/spring-boot-autoconfigure-3.5.7.jar
+
+
+Action:
+
+Correct the classpath of your application so that it contains compatible versions of the classes org.springdoc.core.providers.HateoasHalProvider and org.springframework.boot.autoconfigure.hateoas.HateoasProperties
+
+2026-06-20T00:23:16.418-04:00  INFO 18056 --- [pagos-services] [main] c.g.p.PagosServicesApplication           : Starting PagosServicesApplication using Java 21.0.8 with PID 18056 (C:\Users\MSI GAMING\Downloads\proyecto-semestral-gym\pagos-services\target\classes started by MSI GAMING in C:\Users\MSI GAMING\Downloads\proyecto-semestral-gym)
+2026-06-20T00:23:16.422-04:00  INFO 18056 --- [pagos-services] [main] c.g.p.PagosServicesApplication           : No active profile set, falling back to 1 default profile: "default"
+2026-06-20T00:23:17.801-04:00  INFO 18056 --- [pagos-services] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-06-20T00:23:18.041-04:00  INFO 18056 --- [pagos-services] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 227 ms. Found 1 JPA repository interface.
+2026-06-20T00:23:19.009-04:00  INFO 18056 --- [pagos-services] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 9095 (http)
+2026-06-20T00:23:19.035-04:00  INFO 18056 --- [pagos-services] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-06-20T00:23:19.036-04:00  INFO 18056 --- [pagos-services] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2026-06-20T00:23:19.170-04:00  INFO 18056 --- [pagos-services] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-06-20T00:23:19.170-04:00  INFO 18056 --- [pagos-services] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2659 ms
+2026-06-20T00:23:19.529-04:00  INFO 18056 --- [pagos-services] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-06-20T00:23:19.739-04:00  INFO 18056 --- [pagos-services] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7272ee51
+2026-06-20T00:23:19.742-04:00  INFO 18056 --- [pagos-services] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-06-20T00:23:19.836-04:00  INFO 18056 --- [pagos-services] [main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:mysql://localhost:3306/db_pagos (MySQL 5.5)
+2026-06-20T00:23:19.923-04:00  INFO 18056 --- [pagos-services] [main] o.f.core.internal.command.DbValidate     : Successfully validated 1 migration (execution time 00:00.052s)
+2026-06-20T00:23:19.947-04:00  INFO 18056 --- [pagos-services] [main] o.f.core.internal.command.DbMigrate      : Current version of schema `db_pagos`: 1
+2026-06-20T00:23:19.955-04:00  INFO 18056 --- [pagos-services] [main] o.f.core.internal.command.DbMigrate      : Schema `db_pagos` is up to date. No migration necessary.
+2026-06-20T00:23:20.121-04:00  INFO 18056 --- [pagos-services] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-06-20T00:23:20.228-04:00  INFO 18056 --- [pagos-services] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
+2026-06-20T00:23:20.294-04:00  INFO 18056 --- [pagos-services] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-06-20T00:23:20.801-04:00  INFO 18056 --- [pagos-services] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-06-20T00:23:20.899-04:00  WARN 18056 --- [pagos-services] [main] org.hibernate.dialect.Dialect            : HHH000511: The 5.5.5 version for [org.hibernate.dialect.MySQLDialect] is no longer supported, hence certain features may not work properly. The minimum supported version is 8.0.0. Check the community dialects project for available legacy versions.
+2026-06-20T00:23:21.908-04:00  INFO 18056 --- [pagos-services] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-06-20T00:23:21.913-04:00  INFO 18056 --- [pagos-services] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-06-20T00:23:23.640-04:00  INFO 18056 --- [pagos-services] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 9095 (http) with context path '/'
+2026-06-20T00:23:23.654-04:00  INFO 18056 --- [pagos-services] [main] c.g.p.PagosServicesApplication           : Started PagosServicesApplication in 7.982 seconds (process running for 8.578)
+2026-06-20T00:37:50.979-04:00  INFO 18056 --- [pagos-services] [http-nio-9095-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-06-20T00:37:50.980-04:00  INFO 18056 --- [pagos-services] [http-nio-9095-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-06-20T00:37:50.982-04:00  INFO 18056 --- [pagos-services] [http-nio-9095-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2026-06-20T00:48:30.783-04:00  INFO 18056 --- [pagos-services] [http-nio-9095-exec-4] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 605 ms
+2026-06-20T00:50:46.629-04:00  INFO 18056 --- [pagos-services] [http-nio-9095-exec-1] c.g.p.controller.PagoControllerV2        : V2 GET /pagos - Listando pagos

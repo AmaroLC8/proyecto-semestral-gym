@@ -25,13 +25,10 @@ import com.grupito.pagos_services.dto.PagoDTO;
 import com.grupito.pagos_services.model.Pago;
 import com.grupito.pagos_services.services.PagoService;
 
-/**
- * Controlador REST para gestionar operaciones relacionadas con pagos.
- * Proporciona endpoints para crear, listar y verificar la existencia de pagos.
- */
 @RestController
 @RequestMapping("/pagos")
 public class PagoController {
+    
     private static final Logger logger = LoggerFactory.getLogger(PagoController.class);
 
     private final PagoService pagoService;
