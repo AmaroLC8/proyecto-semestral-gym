@@ -1,4 +1,4 @@
-package com.grupito.soporte_services.config;
+package com.grupito.reservas_services.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,9 +16,9 @@ public class SwaggerConfig {
     public OpenAPI customOpenAPI() {
         return new OpenAPI()
                 .info(new Info()
-                        .title("API de Soporte - Gym")
+                        .title("API de Reservas - Gym")
                         .version("1.0")
-                        .description("Documentación del microservicio de soporte con soporte JWT."))
+                        .description("Documentación del microservicio de reservas con soporte JWT."))
                 .addSecurityItem(new SecurityRequirement().addList("bearerAuth"))
                 .components(new Components()
                         .addSecuritySchemes("bearerAuth",

@@ -1,8 +1,10 @@
 package com.grupito.auth_service.service;
 
-import org.springframework.stereotype.Service;
-import java.security.MessageDigest;
 import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
+import org.springframework.stereotype.Service;
 
 @Service
 public class HashService {
@@ -12,7 +14,7 @@ public class HashService {
             MessageDigest md = MessageDigest.getInstance("SHA-1");
             byte[] digest = md.digest(input.getBytes(StandardCharsets.UTF_8));
             return toHex(digest);
-        } catch (Exception e) {
+        } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException("Unable to compute SHA-1", e);
         }
     }
