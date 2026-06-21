@@ -54,6 +54,24 @@ services:
     depends_on:
       - mysql
 
+  pagos:
+    build: ./pagos-services
+    ports:
+      - "9095:9095"
+    environment:
+      - JAVA_OPTS=-Xmx512m
+    depends_on:
+      - mysql
+
+  seguimientos:
+    build: ./seguimientos-services
+    ports:
+      - "9094:9094"
+    environment:
+      - JAVA_OPTS=-Xmx512m
+    depends_on:
+      - mysql
+
   mysql:
     image: mysql:8.0
     environment:
