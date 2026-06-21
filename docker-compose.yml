@@ -1,0 +1,68 @@
+version: '3.8'
+services:
+  usuarios:
+    build: ./usuarios-services
+    ports:
+      - "9091:9091"
+    environment:
+      - JAVA_OPTS=-Xmx512m
+    depends_on:
+      - mysql
+
+  recomendaciones:
+    build: ./recomendaciones-services
+    ports:
+      - "9097:9097"
+    environment:
+      - JAVA_OPTS=-Xmx512m
+    depends_on:
+      - mysql
+
+  review:
+    build: ./review-services
+    ports:
+      - "9099:9099"
+    environment:
+      - JAVA_OPTS=-Xmx512m
+    depends_on:
+      - mysql
+
+  soporte:
+    build: ./soporte-services
+    ports:
+      - "9098:9098"
+    environment:
+      - JAVA_OPTS=-Xmx512m
+    depends_on:
+      - mysql
+
+  rutinas:
+    build: ./rutinas-services
+    ports:
+      - "9092:9092"
+    environment:
+      - JAVA_OPTS=-Xmx512m
+    depends_on:
+      - mysql
+
+  reservas:
+    build: ./reservas-services
+    ports:
+      - "9093:9093"
+    environment:
+      - JAVA_OPTS=-Xmx512m
+    depends_on:
+      - mysql
+
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: gym
+    ports:
+      - "3306:3306"
+    volumes:
+      - db-data:/var/lib/mysql
+
+volumes:
+  db-data:
