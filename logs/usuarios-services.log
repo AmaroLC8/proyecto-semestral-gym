@@ -1,0 +1,101 @@
+2026-06-21T20:37:42.171-04:00  INFO 2548 --- [usuarios-services] [main] c.g.u.UsuariosServicesApplication        : Starting UsuariosServicesApplication using Java 21.0.10 with PID 2548 (C:\Users\carol\Downloads\proyecto-semestral-gym\usuarios-services\target\classes started by carol in C:\Users\carol\Downloads\proyecto-semestral-gym)
+2026-06-21T20:37:42.176-04:00  INFO 2548 --- [usuarios-services] [main] c.g.u.UsuariosServicesApplication        : No active profile set, falling back to 1 default profile: "default"
+2026-06-21T20:37:43.340-04:00  INFO 2548 --- [usuarios-services] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-06-21T20:37:43.418-04:00  INFO 2548 --- [usuarios-services] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 60 ms. Found 1 JPA repository interface.
+2026-06-21T20:37:44.207-04:00  INFO 2548 --- [usuarios-services] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 9091 (http)
+2026-06-21T20:37:44.227-04:00  INFO 2548 --- [usuarios-services] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-06-21T20:37:44.228-04:00  INFO 2548 --- [usuarios-services] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.48]
+2026-06-21T20:37:44.311-04:00  INFO 2548 --- [usuarios-services] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-06-21T20:37:44.312-04:00  INFO 2548 --- [usuarios-services] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2075 ms
+2026-06-21T20:37:44.529-04:00  INFO 2548 --- [usuarios-services] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-06-21T20:37:44.898-04:00  INFO 2548 --- [usuarios-services] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@691541bc
+2026-06-21T20:37:44.902-04:00  INFO 2548 --- [usuarios-services] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-06-21T20:37:45.275-04:00  INFO 2548 --- [usuarios-services] [main] liquibase.changelog                      : Creating database history table with name: db_usuarios.databasechangelog
+2026-06-21T20:37:45.464-04:00  INFO 2548 --- [usuarios-services] [main] liquibase.changelog                      : Reading from db_usuarios.databasechangelog
+2026-06-21T20:37:45.482-04:00  INFO 2548 --- [usuarios-services] [main] liquibase.snapshot                       : Creating snapshot
+2026-06-21T20:37:45.522-04:00  WARN 2548 --- [usuarios-services] [main] liquibase.executor                       : Name 'PK_DATABASECHANGELOGLOCK' ignored for PRIMARY key.
+2026-06-21T20:37:45.583-04:00  INFO 2548 --- [usuarios-services] [main] liquibase.lockservice                    : Successfully acquired change log lock
+2026-06-21T20:37:45.585-04:00  INFO 2548 --- [usuarios-services] [main] liquibase.command                        : Using deploymentId: 2088664496
+2026-06-21T20:37:45.588-04:00  INFO 2548 --- [usuarios-services] [main] liquibase.changelog                      : Reading from db_usuarios.databasechangelog
+2026-06-21T20:37:45.627-04:00  INFO 2548 --- [usuarios-services] [main] liquibase.ui                             : Running Changeset: db/changelog/db.changelog.sql::1::gymflow
+2026-06-21T20:37:45.658-04:00  INFO 2548 --- [usuarios-services] [main] liquibase.changelog                      : Custom SQL executed
+2026-06-21T20:37:45.660-04:00  INFO 2548 --- [usuarios-services] [main] liquibase.changelog                      : ChangeSet db/changelog/db.changelog.sql::1::gymflow ran successfully in 31ms
+2026-06-21T20:37:45.670-04:00  INFO 2548 --- [usuarios-services] [main] liquibase.ui                             : Running Changeset: db/changelog/db.changelog.sql::2::gymflow
+2026-06-21T20:37:45.683-04:00  INFO 2548 --- [usuarios-services] [main] liquibase.changelog                      : Custom SQL executed
+2026-06-21T20:37:45.686-04:00  INFO 2548 --- [usuarios-services] [main] liquibase.changelog                      : ChangeSet db/changelog/db.changelog.sql::2::gymflow ran successfully in 15ms
+2026-06-21T20:37:45.703-04:00  INFO 2548 --- [usuarios-services] [main] liquibase.util                           : UPDATE SUMMARY
+2026-06-21T20:37:45.704-04:00  INFO 2548 --- [usuarios-services] [main] liquibase.util                           : Run:                          2
+2026-06-21T20:37:45.704-04:00  INFO 2548 --- [usuarios-services] [main] liquibase.util                           : Previously run:               0
+2026-06-21T20:37:45.704-04:00  INFO 2548 --- [usuarios-services] [main] liquibase.util                           : Filtered out:                 0
+2026-06-21T20:37:45.704-04:00  INFO 2548 --- [usuarios-services] [main] liquibase.util                           : -------------------------------
+2026-06-21T20:37:45.705-04:00  INFO 2548 --- [usuarios-services] [main] liquibase.util                           : Total change sets:            2
+2026-06-21T20:37:45.708-04:00  INFO 2548 --- [usuarios-services] [main] liquibase.util                           : Update summary generated
+2026-06-21T20:37:45.716-04:00  INFO 2548 --- [usuarios-services] [main] liquibase.command                        : Update command completed successfully.
+2026-06-21T20:37:45.717-04:00  INFO 2548 --- [usuarios-services] [main] liquibase.ui                             : Liquibase: Update has been successful. Rows affected: 12
+2026-06-21T20:37:45.723-04:00  INFO 2548 --- [usuarios-services] [main] liquibase.lockservice                    : Successfully released change log lock
+2026-06-21T20:37:45.726-04:00  INFO 2548 --- [usuarios-services] [main] liquibase.command                        : Command execution complete
+2026-06-21T20:37:47.389-04:00  INFO 2548 --- [usuarios-services] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-06-21T20:37:47.462-04:00  INFO 2548 --- [usuarios-services] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.33.Final
+2026-06-21T20:37:47.520-04:00  INFO 2548 --- [usuarios-services] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-06-21T20:37:47.922-04:00  INFO 2548 --- [usuarios-services] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-06-21T20:37:47.997-04:00  WARN 2548 --- [usuarios-services] [main] org.hibernate.dialect.Dialect            : HHH000511: The 5.5.5 version for [org.hibernate.dialect.MySQLDialect] is no longer supported, hence certain features may not work properly. The minimum supported version is 8.0.0. Check the community dialects project for available legacy versions.
+2026-06-21T20:37:48.027-04:00  INFO 2548 --- [usuarios-services] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 5.5.5
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-06-21T20:37:48.942-04:00  INFO 2548 --- [usuarios-services] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-06-21T20:37:48.946-04:00  INFO 2548 --- [usuarios-services] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-06-21T20:37:49.500-04:00  INFO 2548 --- [usuarios-services] [main] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2026-06-21T20:37:49.996-04:00  INFO 2548 --- [usuarios-services] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 9091 (http) with context path '/'
+2026-06-21T20:37:50.008-04:00  INFO 2548 --- [usuarios-services] [main] c.g.u.UsuariosServicesApplication        : Started UsuariosServicesApplication in 8.503 seconds (process running for 8.994)
+2026-06-21T20:43:30.402-04:00  WARN 2548 --- [usuarios-services] [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=45s329ms701µs500ns).
+2026-06-21T22:23:40.911-04:00  WARN 2548 --- [usuarios-services] [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h24m36s202ms986µs).
+2026-06-21T22:30:01.272-04:00  INFO 2548 --- [usuarios-services] [http-nio-9091-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-06-21T22:30:01.273-04:00  INFO 2548 --- [usuarios-services] [http-nio-9091-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-06-21T22:30:01.286-04:00  INFO 2548 --- [usuarios-services] [http-nio-9091-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 12 ms
+2026-06-21T22:30:02.513-04:00  INFO 2548 --- [usuarios-services] [http-nio-9091-exec-9] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 764 ms
+2026-06-21T23:06:43.194-04:00  INFO 2368 --- [usuarios-services] [main] c.g.u.UsuariosServicesApplication        : Starting UsuariosServicesApplication using Java 21.0.10 with PID 2368 (C:\Users\carol\Downloads\proyecto-semestral-gym\usuarios-services\target\classes started by carol in C:\Users\carol\Downloads\proyecto-semestral-gym)
+2026-06-21T23:06:43.197-04:00  INFO 2368 --- [usuarios-services] [main] c.g.u.UsuariosServicesApplication        : No active profile set, falling back to 1 default profile: "default"
+2026-06-21T23:06:44.154-04:00  INFO 2368 --- [usuarios-services] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-06-21T23:06:44.218-04:00  INFO 2368 --- [usuarios-services] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 48 ms. Found 1 JPA repository interface.
+2026-06-21T23:06:44.767-04:00  INFO 2368 --- [usuarios-services] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 9091 (http)
+2026-06-21T23:06:44.781-04:00  INFO 2368 --- [usuarios-services] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-06-21T23:06:44.782-04:00  INFO 2368 --- [usuarios-services] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.48]
+2026-06-21T23:06:44.844-04:00  INFO 2368 --- [usuarios-services] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-06-21T23:06:44.845-04:00  INFO 2368 --- [usuarios-services] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1576 ms
+2026-06-21T23:06:45.015-04:00  INFO 2368 --- [usuarios-services] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-06-21T23:06:45.207-04:00  INFO 2368 --- [usuarios-services] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7b14c61
+2026-06-21T23:06:45.209-04:00  INFO 2368 --- [usuarios-services] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-06-21T23:06:45.726-04:00  INFO 2368 --- [usuarios-services] [main] liquibase.changelog                      : Reading from db_usuarios.databasechangelog
+2026-06-21T23:06:45.772-04:00  INFO 2368 --- [usuarios-services] [main] liquibase.ui                             : Database is up to date, no changesets to execute
+2026-06-21T23:06:45.774-04:00  INFO 2368 --- [usuarios-services] [main] liquibase.changelog                      : Reading from db_usuarios.databasechangelog
+2026-06-21T23:06:45.784-04:00  INFO 2368 --- [usuarios-services] [main] liquibase.util                           : UPDATE SUMMARY
+2026-06-21T23:06:45.784-04:00  INFO 2368 --- [usuarios-services] [main] liquibase.util                           : Run:                          0
+2026-06-21T23:06:45.785-04:00  INFO 2368 --- [usuarios-services] [main] liquibase.util                           : Previously run:               2
+2026-06-21T23:06:45.785-04:00  INFO 2368 --- [usuarios-services] [main] liquibase.util                           : Filtered out:                 0
+2026-06-21T23:06:45.785-04:00  INFO 2368 --- [usuarios-services] [main] liquibase.util                           : -------------------------------
+2026-06-21T23:06:45.785-04:00  INFO 2368 --- [usuarios-services] [main] liquibase.util                           : Total change sets:            2
+2026-06-21T23:06:45.786-04:00  INFO 2368 --- [usuarios-services] [main] liquibase.util                           : Update summary generated
+2026-06-21T23:06:45.788-04:00  INFO 2368 --- [usuarios-services] [main] liquibase.command                        : Command execution complete
+2026-06-21T23:06:47.437-04:00  INFO 2368 --- [usuarios-services] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-06-21T23:06:47.522-04:00  INFO 2368 --- [usuarios-services] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.33.Final
+2026-06-21T23:06:47.577-04:00  INFO 2368 --- [usuarios-services] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-06-21T23:06:48.012-04:00  INFO 2368 --- [usuarios-services] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-06-21T23:06:48.124-04:00  WARN 2368 --- [usuarios-services] [main] org.hibernate.dialect.Dialect            : HHH000511: The 5.5.5 version for [org.hibernate.dialect.MySQLDialect] is no longer supported, hence certain features may not work properly. The minimum supported version is 8.0.0. Check the community dialects project for available legacy versions.
+2026-06-21T23:06:48.152-04:00  INFO 2368 --- [usuarios-services] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 5.5.5
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-06-21T23:06:48.948-04:00  INFO 2368 --- [usuarios-services] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-06-21T23:06:48.952-04:00  INFO 2368 --- [usuarios-services] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-06-21T23:06:49.414-04:00  INFO 2368 --- [usuarios-services] [main] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2026-06-21T23:06:49.826-04:00  INFO 2368 --- [usuarios-services] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 9091 (http) with context path '/'
+2026-06-21T23:06:49.837-04:00  INFO 2368 --- [usuarios-services] [main] c.g.u.UsuariosServicesApplication        : Started UsuariosServicesApplication in 7.252 seconds (process running for 7.697)
