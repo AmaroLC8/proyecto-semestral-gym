@@ -2,6 +2,8 @@ server:
   port: 9090
 
 spring:
+  application:
+    name: api-gateway
   main:
     web-application-type: reactive
 
@@ -9,7 +11,7 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          secret-key: esta_es_mi_compleja_clave_secreta
+          secret-key: "esta_es_mi_compleja_clave_secreta"
 
   cloud:
     gateway:
@@ -24,30 +26,25 @@ spring:
           predicates:
             - Path=/usuarios/**
 
-        - id: pagos-service
-          uri: http://localhost:9095
-          predicates:
-            - Path=/pagos/**
-          
-        - id: reservas-service
-          uri: http://localhost:9093
-          predicates:
-            - Path=/reservas/**
-          
         - id: rutinas-service
           uri: http://localhost:9092
           predicates:
             - Path=/rutinas/**
-          
+
+        - id: reservas-service
+          uri: http://localhost:9093
+          predicates:
+            - Path=/reservas/**
+
         - id: seguimientos-service
           uri: http://localhost:9094
           predicates:
             - Path=/seguimientos/**
-        
-        - id: seguimientos-service
-          uri: http://localhost:9094
+
+        - id: pagos-service
+          uri: http://localhost:9095
           predicates:
-            - Path=/seguimientos/**
+            - Path=/pagos/**
 
         - id: inventario-service
           uri: http://localhost:9096
@@ -67,6 +64,31 @@ spring:
         - id: review-service
           uri: http://localhost:9099
           predicates:
-            - Path=/review/**
+            - Path=/reviews/**
 
-
+# CONFIGURACIÓN DE SWAGGER CENTRALIZADO SEGURO
+springdoc:
+  swagger-ui:
+    # ACTIVAR LA INTERFAZ GRÁFICA EN EL GATEWAY
+    enabled: true
+    urls:
+      - name: "Modulo 01: Autenticacion (Auth)"
+        url: /auth/v3/api-docs
+      - name: "Modulo 02: Gestion de Usuarios"
+        url: /usuarios/v3/api-docs
+      - name: "Modulo 03: Rutinas de Ejercicio"
+        url: /rutinas/v3/api-docs
+      - name: "Modulo 04: Reserva de Clases"
+        url: /reservas/v3/api-docs
+      - name: "Modulo 05: Seguimiento Fisico (Peso/Grasa)"
+        url: /seguimientos/v3/api-docs
+      - name: "Modulo 06: Pagos y Mensualidades"
+        url: /pagos/v3/api-docs
+      - name: "Modulo 07: Inventario del Gym"
+        url: /inventario/v3/api-docs
+      - name: "Modulo 08: Recomendaciones Inteligentes"
+        url: /recomendaciones/v3/api-docs
+      - name: "Modulo 09: Soporte Tecnico (Tickets)"
+        url: /soporte/v3/api-docs
+      - name: "Modulo 10: Resenas y Reviews"
+        url: /reviews/v3/api-docs
