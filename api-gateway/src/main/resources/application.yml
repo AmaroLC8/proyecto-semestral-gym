@@ -1,43 +1,76 @@
+server:
+  port: 9090
+
 spring:
   application:
     name: api-gateway
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          secret-key: esta_es_mi_compleja_clave_secreta_de_32_caracteres_minimo
   cloud:
     gateway:
       routes:
+        # Servicios iniciales
         - id: usuarios-route
-          uri: http://localhost:9091
+          uri: http://usuarios-service:9091
           predicates:
             - Path=/api/usuarios/**
           filters:
             - StripPrefix=1
-
         - id: rutinas-route
-          uri: http://localhost:9092
+          uri: http://rutinas-service:9092
           predicates:
             - Path=/api/rutinas/**
           filters:
             - StripPrefix=1
-
         - id: reservas-route
-          uri: http://localhost:9093
+          uri: http://reservas-service:9093
           predicates:
             - Path=/api/reservas/**
           filters:
             - StripPrefix=1
-
         - id: seguimientos-route
-          uri: http://localhost:9094
+          uri: http://seguimientos-service:9094
           predicates:
             - Path=/api/seguimientos/**
           filters:
             - StripPrefix=1
-
         - id: pagos-route
-          uri: http://localhost:9095
+          uri: http://pagos-service:9095
           predicates:
             - Path=/api/pagos/**
           filters:
             - StripPrefix=1
-
-server:
-  port: 9090
+        - id: inventario-route
+          uri: http://inventario-service:9096
+          predicates:
+            - Path=/api/inventario/**
+          filters:
+            - StripPrefix=1
+        # Servicios finales
+        - id: recomendaciones-route
+          uri: http://recomendaciones-service:9097
+          predicates:
+            - Path=/api/recomendaciones/**
+          filters:
+            - StripPrefix=1
+        - id: soporte-route
+          uri: http://soporte-service:9098
+          predicates:
+            - Path=/api/soporte/**
+          filters:
+            - StripPrefix=1
+        - id: reviews-route
+          uri: http://reviews-service:9099
+          predicates:
+            - Path=/api/reviews/**
+          filters:
+            - StripPrefix=1
+        - id: auth-route
+          uri: http://auth-service:8085
+          predicates:
+            - Path=/api/auth/**
+          filters:
+            - StripPrefix=1

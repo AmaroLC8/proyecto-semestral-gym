@@ -1,0 +1,21 @@
+server:
+  port: 9096
+
+spring:
+  application:
+    name: inventario-service
+  datasource:
+    # Esta es la URL correcta para Docker (usando 'mysql' en lugar de 'localhost')
+    url: ${SPRING_DATASOURCE_URL:jdbc:mysql://mysql:3306/gym?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true}
+    username: ${SPRING_DATASOURCE_USERNAME:root}
+    password: ${SPRING_DATASOURCE_PASSWORD:root}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_URL:http://eureka-server:8761/eureka}
