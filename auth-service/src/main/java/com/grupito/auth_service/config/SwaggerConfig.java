@@ -12,7 +12,6 @@ import io.swagger.v3.oas.models.servers.Server;
 public class SwaggerConfig {
 
     static {
-        // 🚀 ESTA LÍNEA ES MÁGICA: Fuerza a Spring Boot moderno a cambiar la ruta técnica
         System.setProperty("springdoc.openapi.api-docs.path", "/auth/v3/api-docs");
     }
 
