@@ -1,43 +1,37 @@
 server:
-  port: 9091
-
+  port: 9094
 spring:
   application:
-    name: usuarios-services
-    
+    name: seguimientos-services
   datasource:
-    
-    url: jdbc:mysql://localhost:3306/db_usuarios?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+    url: jdbc:mysql://gym-mysql:3306/db_seguimientos?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
     username: root
-    password: ""
-    
+    password: root
   jpa:
     hibernate:
       ddl-auto: none
     show-sql: true
     properties:
       hibernate:
-        format_sql: true 
+        format_sql: true
     open-in-view: false
-    
   liquibase:
     enabled: true
     change-log: classpath:db/changelog/db.changelog.sql
-
+urls:
+  usuarios-service: http://usuarios-services:9091/usuarios
 springdoc:
   api-docs:
     enabled: true
-    path: /usuarios/v3/api-docs
+    path: /seguimientos/v3/api-docs
   swagger-ui:
     enabled: true
-    path: /doc/swagger-ui.html 
-
+    path: /doc/swagger-ui.html
 logging:
   level:
-    com.grupito.usuarios_services: INFO
+    com.grupito: INFO
   file:
-    name: logs/usuarios-services.log
+    name: logs/seguimientos-services.log
   pattern:
-    
     console: "%d{HH:mm:ss} %-5level %msg%n"
     file: "%d{HH:mm:ss} %-5level %msg%n"

@@ -69,7 +69,7 @@ spring:
 # CONFIGURACIÓN DE SWAGGER CENTRALIZADO SEGURO
 springdoc:
   swagger-ui:
-    # ACTIVAR LA INTERFAZ GRÁFICA EN EL GATEWAY
+  
     enabled: true
     urls:
       - name: "Modulo 01: Autenticacion (Auth)"
