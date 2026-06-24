@@ -1,11 +1,6 @@
 package com.grupito.inventario_services.dto;
 
 import com.grupito.inventario_services.model.Producto;
-<<<<<<< HEAD
-=======
-import lombok.*;
->>>>>>> 74d79a67ff6d62b15b8c0b4edb59eec32e8a60e0
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

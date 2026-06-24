@@ -1,7 +1,5 @@
 server:
   port: 9096
-<<<<<<< HEAD
-
 spring:
   application:
     name: inventario-service
@@ -16,11 +14,13 @@ spring:
       ddl-auto: update
     show-sql: true
 
+# Arreglar la estructura de appplication.yml para que sea válida y no tenga errores de sintaxis.
+# Ademas para que la configuración de eureka y springdoc sea consistente con la de application-docker.yml, se debe mantener la misma estructura y valores predeterminados.
+
 eureka:
   client:
     service-url:
       defaultZone: ${EUREKA_URL:http://eureka-server:8761/eureka}
-=======
 spring:
   application:
     name: inventario-services
@@ -55,4 +55,3 @@ logging:
   pattern:
     console: "%d{HH:mm:ss} %-5level %msg%n"
     file: "%d{HH:mm:ss} %-5level %msg%n"
->>>>>>> 74d79a67ff6d62b15b8c0b4edb59eec32e8a60e0
