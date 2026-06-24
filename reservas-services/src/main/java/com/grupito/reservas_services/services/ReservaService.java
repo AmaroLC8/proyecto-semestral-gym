@@ -1,45 +1,18 @@
 package com.grupito.reservas_services.services;
 
-import java.util.List;
-
-import org.springframework.stereotype.Service;
-
 import com.grupito.reservas_services.model.Reservas;
 import com.grupito.reservas_services.repository.ReservasRepository;
+import org.springframework.stereotype.Service;
+import java.util.List;
 
 @Service
 public class ReservaService {
-    private final ReservasRepository reservasRepository;
+    private final ReservasRepository repo;
 
-    public ReservaService(ReservasRepository reservasRepository){
-        this.reservasRepository = reservasRepository;
-    }
+    public ReservaService(ReservasRepository repo) { this.repo = repo; }
 
-    public Reservas guardar(Reservas cliente) {
-        return reservasRepository.save(cliente);
-    }
-
-    public boolean existePorId(Long id) {
-        return reservasRepository.existsById(id);
-    }
-
-    public List<Reservas> listar() {
-        return reservasRepository.findAll();
-    }
-
-    public List<Reservas> buscarPorIdSocio(int idSocio) {
-        return reservasRepository.findByIdSocio(idSocio);
-    }
-
-    public Reservas obtenerPorId(Long id) {
-        return reservasRepository.findById(id).orElse(null);
-    }
-
-    public Reservas actualizar(Reservas reserva) {
-        return reservasRepository.save(reserva);
-    }
-
-    public void eliminar(Long id) {
-        reservasRepository.deleteById(id);
-    }
+    public List<Reservas> listar() { return repo.findAll(); }
+    public Reservas obtenerPorId(Long id) { return repo.findById(id).orElse(null); }
+    public Reservas guardar(Reservas reserva) { return repo.save(reserva); }
+    public void eliminar(Long id) { repo.deleteById(id); }
 }

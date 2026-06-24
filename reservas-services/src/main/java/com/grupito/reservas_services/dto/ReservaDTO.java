@@ -1,44 +1,34 @@
 package com.grupito.reservas_services.dto;
 
+import com.grupito.reservas_services.model.Reservas;
+import jakarta.validation.constraints.*;
+import lombok.*;
 import java.util.Date;
 
-import com.grupito.reservas_services.model.Reservas;
-
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-/**
- * DTO (Data Transfer Object) para la entidad Reservas.
- * Se utiliza para transferir datos entre capas sin exponer la entidad directamente.
- */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class ReservaDTO {
     private Long id;
-    private int id_socio;
-    private Date fecha_hora;
-    private String tipo_clase;
+    
+    @NotNull(message = "Usuario obligatorio")
+    private Long idUsuario;
+    
+    @NotNull(message = "Producto obligatorio")
+    private Long idProducto;
+    
+    private Date fechaReserva;
+    
+    @NotBlank(message = "Estado obligatorio")
     private String estado;
 
-    /**
-     * Convierte este DTO a una entidad Reservas.
-     * @return Instancia de Reservas con los datos del DTO.
-     */
-    public Reservas toModel(){
-        return new Reservas(id, id_socio, fecha_hora, tipo_clase, estado);
+    public Reservas toModel() {
+        return new Reservas(id, idUsuario, idProducto, fechaReserva, estado);
     }
 
-    /**
-     * Crea un DTO a partir de una entidad Reservas.
-     * @param r La entidad Reservas a convertir.
-     * @return DTO correspondiente, o null si la entidad es null.
-     */
-    public static ReservaDTO fromModel (Reservas r){
+    public static ReservaDTO fromModel(Reservas r) {
         if (r == null) return null;
-        return new ReservaDTO(r.getId(), r.getIdSocio(), r.getFechaHora(), r.getTipoClase(), r.getEstado());
+        return new ReservaDTO(r.getId(), r.getIdUsuario(), r.getIdProducto(), r.getFechaReserva(), r.getEstado());
     }
 }
