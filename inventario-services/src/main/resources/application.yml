@@ -1,5 +1,6 @@
 server:
   port: 9096
+<<<<<<< HEAD
 
 spring:
   application:
@@ -19,3 +20,39 @@ eureka:
   client:
     service-url:
       defaultZone: ${EUREKA_URL:http://eureka-server:8761/eureka}
+=======
+spring:
+  application:
+    name: inventario-services
+  datasource:
+    url: jdbc:mysql://localhost:3306/db_inventario?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+    username: root
+    password: ""
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    open-in-view: false
+  liquibase:
+    enabled: true
+    change-log: classpath:db/changelog/db.changelog.sql
+
+springdoc:
+  api-docs:
+    enabled: true
+    path: /inventario/v3/api-docs
+  swagger-ui:
+    enabled: true
+    path: /doc/swagger-ui.html
+logging:
+  level:
+    com.grupito: INFO
+  file:
+    name: logs/inventario-services.log
+  pattern:
+    console: "%d{HH:mm:ss} %-5level %msg%n"
+    file: "%d{HH:mm:ss} %-5level %msg%n"
+>>>>>>> 74d79a67ff6d62b15b8c0b4edb59eec32e8a60e0

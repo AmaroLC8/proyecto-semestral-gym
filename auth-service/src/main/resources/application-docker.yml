@@ -1,0 +1,19 @@
+server:
+  port: 8085
+spring:
+  application:
+    name: auth-service
+  datasource:
+    url: jdbc:mysql://gym-mysql:3306/gym_db?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+    username: root
+    password: root
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    open-in-view: false
+logging:
+  level:
+    com.grupito.auth_service: INFO
+  pattern:
+    console: "%d{HH:mm:ss} %-5level %msg%n"
