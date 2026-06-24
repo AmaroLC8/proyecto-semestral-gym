@@ -1,59 +1,52 @@
 package com.grupito.review_services.controller;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.grupito.review_services.dto.ReviewDTO;
+import com.grupito.review_services.model.Review;
+
 import com.grupito.review_services.service.ReviewService;
+import jakarta.validation.Valid;
+import org.springframework.hateoas.CollectionModel;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 
 @RestController
 @RequestMapping("/reviews")
 public class ReviewController {
+    private final ReviewService service;
 
-	private static final Logger logger = LoggerFactory.getLogger(ReviewController.class);
+    public ReviewController(ReviewService service) { this.service = service; }
 
-	private final ReviewService reviewService;
+    @GetMapping
+    public ResponseEntity<CollectionModel<EntityModel<ReviewDTO>>> listar() {
+        List<EntityModel<ReviewDTO>> reviews = service.listar().stream()
+            .map(r -> EntityModel.of(ReviewDTO.fromModel(r),
+                linkTo(methodOn(ReviewController.class).obtener(r.getId())).withSelfRel()))
+            .collect(Collectors.toList());
 
-	public ReviewController(ReviewService reviewService) {
-		this.reviewService = reviewService;
-	}
+        return ResponseEntity.ok(CollectionModel.of(reviews, 
+            linkTo(methodOn(ReviewController.class).listar()).withSelfRel()));
+    }
 
-	@PostMapping
-	public ResponseEntity<Map<String, Object>> crearReview(@RequestBody ReviewDTO reviewDto) {
-		logger.info("Solicitud para crear review de: {}", reviewDto.getNombre());
-		ReviewDTO creada = reviewService.crearReview(reviewDto);
-		Map<String, Object> resp = new HashMap<>();
-		resp.put("mensaje", "mensaje entregado");
-		resp.put("review", creada);
-		return ResponseEntity.ok(resp);
-	}
+    @GetMapping("/{id}")
+    public ResponseEntity<EntityModel<ReviewDTO>> obtener(@PathVariable Long id) {
+        ReviewDTO dto = ReviewDTO.fromModel(service.obtenerPorId(id));
+        return ResponseEntity.ok(EntityModel.of(dto,
+            linkTo(methodOn(ReviewController.class).obtener(id)).withSelfRel()));
+    }
 
-	@GetMapping
-	public ResponseEntity<List<ReviewDTO>> listarReviews() {
-		List<ReviewDTO> lista = reviewService.listarReviews();
-		return ResponseEntity.ok(lista);
-	}
-
-	@GetMapping("/{id}/exists")
-	public ResponseEntity<Boolean> existeReview(@PathVariable Long id) {
-		return ResponseEntity.ok(reviewService.existePorId(id));
-	}
-
-	@GetMapping("/{id}")
-	public ResponseEntity<ReviewDTO> obtenerReview(@PathVariable Long id) {
-		ReviewDTO dto = reviewService.obtenerPorId(id);
-		if (dto != null) return ResponseEntity.ok(dto);
-		return ResponseEntity.notFound().build();
-	}
+    @PostMapping
+    public ResponseEntity<EntityModel<ReviewDTO>> crear(@Valid @RequestBody ReviewDTO dto) {
+        Review r = service.guardar(dto.toModel());
+        return ResponseEntity.ok(EntityModel.of(ReviewDTO.fromModel(r)));
+    }
+	@DeleteMapping("/{id}")
+    public ResponseEntity<Void> eliminar(@PathVariable Long id) {
+        service.eliminar(id);
+        return ResponseEntity.noContent().build(); 
+    }
 }
