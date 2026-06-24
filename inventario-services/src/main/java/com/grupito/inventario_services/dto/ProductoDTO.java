@@ -1,7 +1,6 @@
 package com.grupito.inventario_services.dto;
 
 import com.grupito.inventario_services.model.Producto;
-import jakarta.validation.constraints.*;
 import lombok.*;
 
 

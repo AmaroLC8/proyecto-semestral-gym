@@ -39,5 +39,48 @@ spring:
           filters:
             - StripPrefix=1
 
-server:
-  port: 9090
+        - id: inventario-service
+          uri: http://localhost:9096
+          predicates:
+            - Path=/inventario/**
+
+        - id: recomendaciones-service
+          uri: http://localhost:9097
+          predicates:
+            - Path=/recomendaciones/**
+
+        - id: soporte-service
+          uri: http://localhost:9098
+          predicates:
+            - Path=/soporte/**
+
+        - id: review-service
+          uri: http://localhost:9099
+          predicates:
+            - Path=/reviews/**
+
+springdoc:
+  swagger-ui:
+  
+    enabled: true
+    urls:
+      - name: "Modulo 01: Autenticacion (Auth)"
+        url: /auth/v3/api-docs
+      - name: "Modulo 02: Gestion de Usuarios"
+        url: /usuarios/v3/api-docs
+      - name: "Modulo 03: Rutinas de Ejercicio"
+        url: /rutinas/v3/api-docs
+      - name: "Modulo 04: Reserva de Clases"
+        url: /reservas/v3/api-docs
+      - name: "Modulo 05: Seguimiento Fisico (Peso/Grasa)"
+        url: /seguimientos/v3/api-docs
+      - name: "Modulo 06: Pagos y Mensualidades"
+        url: /pagos/v3/api-docs
+      - name: "Modulo 07: Inventario del Gym"
+        url: /inventario/v3/api-docs
+      - name: "Modulo 08: Recomendaciones Inteligentes"
+        url: /recomendaciones/v3/api-docs
+      - name: "Modulo 09: Soporte Tecnico (Tickets)"
+        url: /soporte/v3/api-docs
+      - name: "Modulo 10: Resenas y Reviews"
+        url: /reviews/v3/api-docs
