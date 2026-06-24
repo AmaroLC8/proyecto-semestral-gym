@@ -15,8 +15,15 @@ public class Reservas {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
+    @Column(nullable = false)
     private Long idUsuario;
+    
+    @Column(nullable = false)
     private Long idProducto;
+    
+    @Temporal(TemporalType.TIMESTAMP)
     private Date fechaReserva;
-    private String estado; // Ejemplo: "PENDIENTE", "CONFIRMADA"
+    
+    @Column(nullable = false)
+    private String estado;
 }

@@ -8,7 +8,6 @@ import java.util.List;
 @Service
 public class ReservaService {
     private final ReservasRepository repo;
-
     public ReservaService(ReservasRepository repo) { this.repo = repo; }
 
     public List<Reservas> listar() { return repo.findAll(); }

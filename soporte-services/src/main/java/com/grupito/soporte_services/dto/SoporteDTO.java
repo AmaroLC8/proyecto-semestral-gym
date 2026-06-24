@@ -1,20 +1,30 @@
 package com.grupito.soporte_services.dto;
 
-public class SoporteDTO {
+import com.grupito.soporte_services.model.Soporte;
+import jakarta.validation.constraints.*;
+import lombok.*;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class SoporteDTO {
+    private Long id;
+    
+    @NotNull(message = "El id de usuario es obligatorio")
     private Long usuarioId;
+    
+    @NotBlank(message = "El asunto es obligatorio")
     private String asunto;
+    
+    @NotBlank(message = "La descripción es obligatoria")
     private String descripcion;
 
-    public SoporteDTO() {}
-
-    public Long getUsuarioId() { return usuarioId; }
-    public void setUsuarioId(Long usuarioId) { this.usuarioId = usuarioId; }
-
-    public String getAsunto() { return asunto; }
-    public void setAsunto(String asunto) { this.asunto = asunto; }
-
-    public String getDescripcion() { return descripcion; }
-    public void setDescripcion(String descripcion) { this.descripcion = descripcion; }
+    public Soporte toModel() {
+        return Soporte.builder()
+                .usuarioId(usuarioId)
+                .asunto(asunto)
+                .descripcion(descripcion)
+                .build();
+    }
 }
-

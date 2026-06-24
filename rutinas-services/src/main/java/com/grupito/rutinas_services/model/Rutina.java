@@ -1,26 +1,22 @@
 package com.grupito.rutinas_services.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.persistence.*;
+import lombok.*;
 
-/**
- * Entidad que representa una rutina de ejercicios en la base de datos.
- * Mapeada a una tabla en JPA con anotaciones.
- */
+@Entity
+@Table(name = "rutinas")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
+@Builder
 public class Rutina {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    
+    @Column(nullable = false)
     private String nombre;
+    
     private String descripcion;
     private int duracionMinutos;
     private String nivelDificultad;

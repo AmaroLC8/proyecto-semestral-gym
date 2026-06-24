@@ -12,15 +12,15 @@ import java.util.Date;
 public class ReservaDTO {
     private Long id;
     
-    @NotNull(message = "Usuario obligatorio")
+    @NotNull(message = "El id de usuario es obligatorio")
     private Long idUsuario;
     
-    @NotNull(message = "Producto obligatorio")
+    @NotNull(message = "El id de producto es obligatorio")
     private Long idProducto;
     
     private Date fechaReserva;
     
-    @NotBlank(message = "Estado obligatorio")
+    @NotBlank(message = "El estado es obligatorio")
     private String estado;
 
     public Reservas toModel() {

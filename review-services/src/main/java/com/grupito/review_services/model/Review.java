@@ -14,7 +14,12 @@ public class Review {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    private Long idProducto; // El producto al que le hacen la review
-    private Integer calificacion; // 1 al 5
+    @Column(nullable = false)
+    private Long idProducto;
+    
+    @Column(nullable = false)
+    private Integer calificacion;
+    
+    @Column(nullable = false)
     private String comentario;
 }

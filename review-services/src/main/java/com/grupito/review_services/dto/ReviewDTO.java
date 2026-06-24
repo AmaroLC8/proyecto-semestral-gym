@@ -14,10 +14,12 @@ public class ReviewDTO {
     @NotNull(message = "El id del producto es obligatorio")
     private Long idProducto;
     
-    @NotNull @Min(1) @Max(5)
+    @NotNull(message = "La calificación es obligatoria")
+    @Min(value = 1, message = "Mínimo 1 estrella")
+    @Max(value = 5, message = "Máximo 5 estrellas")
     private Integer calificacion;
     
-    @NotBlank(message = "El comentario es obligatorio")
+    @NotBlank(message = "El comentario no puede estar vacío")
     private String comentario;
 
     public Review toModel() {

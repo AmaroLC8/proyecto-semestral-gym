@@ -1,33 +1,30 @@
 package com.grupito.seguimientos_services.model;
 
+import jakarta.persistence.*;
+import lombok.*;
 import java.util.Date;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Column;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
+@Entity
+@Table(name = "seguimientos")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
+@Builder
 public class Seguimiento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @Column(name = "id_socio")
+    @Column(nullable = false)
     private int idSocio;
     
+    @Column(nullable = false)
     private double peso;
     
-    @Column(name = "porcentaje_grasa")
+    @Column(nullable = false)
     private double porcentajeGrasa;
     
-    @Column(name = "fecha_registro")
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(nullable = false)
     private Date fechaRegistro;
 }

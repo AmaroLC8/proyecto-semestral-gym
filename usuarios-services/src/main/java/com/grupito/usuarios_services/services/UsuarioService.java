@@ -1,43 +1,18 @@
 package com.grupito.usuarios_services.services;
 
-import java.util.List;
-
-import org.springframework.stereotype.Service;
-
 import com.grupito.usuarios_services.model.Usuario;
 import com.grupito.usuarios_services.repository.UsuarioRepository;
+import org.springframework.stereotype.Service;
+import java.util.List;
 
 @Service
 public class UsuarioService {
-    private final UsuarioRepository usuarioRepository;
+    private final UsuarioRepository repo;
+    public UsuarioService(UsuarioRepository repo) { this.repo = repo; }
 
-    public UsuarioService(UsuarioRepository usuarioRepository) {
-        this.usuarioRepository = usuarioRepository;
-    }
-
-    public Usuario guardar(Usuario cliente) {
-        return usuarioRepository.save(cliente);
-    }
-
-    public boolean existePorId(Long id) {
-        return usuarioRepository.existsById(id);
-    }
-
-    public List<Usuario> listar() {
-        return usuarioRepository.findAll();
-    }
-
-    public Usuario obtenerPorId(Long id) {
-        return usuarioRepository.findById(id).orElse(null);
-    }
-
-    public Usuario actualizar(Usuario usuario) {
-        return usuarioRepository.save(usuario);
-    }
-
-    public void eliminar(Long id) {
-        usuarioRepository.deleteById(id);
-    }
+    public Usuario guardar(Usuario u) { return repo.save(u); }
+    public List<Usuario> listar() { return repo.findAll(); }
+    public Usuario obtenerPorId(Long id) { return repo.findById(id).orElse(null); }
+    public void eliminar(Long id) { repo.deleteById(id); }
+    public boolean existePorId(Long id) { return repo.existsById(id); }
 }
-
-
