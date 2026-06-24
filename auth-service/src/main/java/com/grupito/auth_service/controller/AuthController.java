@@ -5,9 +5,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.grupito.auth_service.service.UserService;
-import java.util.Map;
-import java.util.HashMap;
 
 @RestController
 @RequestMapping("/auth")
@@ -17,12 +16,12 @@ public class AuthController {
     private UserService userService;
 
     @PostMapping("/login")
-    public Map<String, String> login(@RequestBody Map<String, String> request) {
+    public java.util.Map<String, String> login(@RequestBody java.util.Map<String, String> request) {
         String email = request.get("email");
         String password = request.get("password");
         String token = userService.login(email, password);
 
-        Map<String, String> resp = new HashMap<>();
+        java.util.Map<String, String> resp = new java.util.HashMap<>();
         if (token == null) {
             resp.put("status", "error");
             resp.put("token", "");
@@ -34,12 +33,12 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public Map<String, String> register(@RequestBody Map<String, String> request) {
+    public java.util.Map<String, String> register(@RequestBody java.util.Map<String, String> request) {
         String email = request.get("email");
         String password = request.get("password");
         String resultado = userService.register(email, password);
 
-        Map<String, String> resp = new HashMap<>();
+        java.util.Map<String, String> resp = new java.util.HashMap<>();
         resp.put("message", resultado);
         return resp;
     }

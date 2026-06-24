@@ -1,21 +1,17 @@
 package com.grupito.pagos_services.client;
 
 import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
-
 import reactor.core.publisher.Mono;
 
 @Component
 public class UsuarioClient {
-
     private final WebClient webClient;
 
-    public UsuarioClient(WebClient.Builder webClientBuilder,
-                         @Value("${usuarios.service.url}") String usuariosServiceUrl) {
+    public UsuarioClient(WebClient.Builder webClientBuilder, @Value("${usuarios.service.url:http://usuarios-service:9091}") String usuariosServiceUrl) {
         this.webClient = webClientBuilder.baseUrl(usuariosServiceUrl).build();
     }
 

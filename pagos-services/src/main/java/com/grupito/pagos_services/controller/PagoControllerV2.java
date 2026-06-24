@@ -18,13 +18,8 @@ import com.grupito.pagos_services.dto.PagoDTO;
 import com.grupito.pagos_services.model.Pago;
 import com.grupito.pagos_services.services.PagoService;
 
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.security.SecurityRequirement;
-import io.swagger.v3.oas.annotations.tags.Tag;
-
 @RestController
 @RequestMapping("/pagos/v2")
-@Tag(name = "Pagos V2 (HATEOAS)", description = "API de Pagos con soporte Hypermedia")
 public class PagoControllerV2 {
     
     private final PagoService pagoService;
@@ -36,7 +31,6 @@ public class PagoControllerV2 {
         this.assembler = assembler;
     }
 
-    @Operation(summary = "Listar todos los pagos (V2)", security = @SecurityRequirement(name = "bearerAuth"))
     @GetMapping
     public CollectionModel<EntityModel<PagoDTO>> listarPagos() {
         logger.info("V2 GET /pagos - Listando pagos");
@@ -44,11 +38,9 @@ public class PagoControllerV2 {
                 .map(PagoDTO::fromModel)
                 .map(assembler::toModel)
                 .collect(Collectors.toList());
-                
         return CollectionModel.of(pagos, linkTo(methodOn(PagoControllerV2.class).listarPagos()).withSelfRel());
     }
 
-    @Operation(summary = "Obtener un pago por ID (V2)", security = @SecurityRequirement(name = "bearerAuth"))
     @GetMapping("/{id}")
     public EntityModel<PagoDTO> obtenerPago(@PathVariable Long id) {
         logger.info("V2 GET /pagos/{} - Obteniendo pago", id);

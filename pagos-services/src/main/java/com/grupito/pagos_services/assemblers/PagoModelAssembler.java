@@ -1,7 +1,6 @@
 package com.grupito.pagos_services.assemblers;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
-
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.RepresentationModelAssembler;
 import org.springframework.stereotype.Component;
@@ -16,7 +15,6 @@ public class PagoModelAssembler implements RepresentationModelAssembler<PagoDTO,
     public EntityModel<PagoDTO> toModel(PagoDTO pago) {
         return EntityModel.of(pago,
                 linkTo(methodOn(PagoControllerV2.class).obtenerPago(pago.getId())).withSelfRel(),
-            
-                linkTo(methodOn(PagoControllerV2.class).listarPagos()).withRel("pagos"));  
+                linkTo(methodOn(PagoControllerV2.class).listarPagos()).withRel("pagos"));
     }
 }

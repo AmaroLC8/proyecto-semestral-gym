@@ -25,17 +25,7 @@ public class SecurityConfig {
         return http
             .csrf(csrf -> csrf.disable())
             .authorizeExchange(exchanges -> exchanges
-                // 1. Recursos y assets estáticos de interfaz (Evita el Whitelabel 404)
-                .pathMatchers("/swagger-ui.html", "/swagger-ui/**", "/webjars/**", "/v3/api-docs/swagger-config", "/favicon.ico").permitAll()
-                
-                // 2. Especificaciones OpenAPI locales y de microservicios
-                .pathMatchers("/v3/api-docs", "/v3/api-docs/**").permitAll()
-                .pathMatchers("/*/v3/api-docs", "/*/v3/api-docs/**").permitAll()
-                
-                // 3. Endpoints públicos del sistema (Login y Registro)
                 .pathMatchers("/auth/**").permitAll()
-                
-                // Todo lo demás de la lógica de negocio exige token JWT obligatorio
                 .anyExchange().authenticated()
             )
             .oauth2ResourceServer(oauth2 -> oauth2

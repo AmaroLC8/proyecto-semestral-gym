@@ -1,86 +1,182 @@
-version: '3.8'
 services:
-  usuarios:
-    build: ./usuarios-services
-    ports:
-      - "9091:9091"
-    environment:
-      - JAVA_OPTS=-Xmx512m
-    depends_on:
-      - mysql
-
-  recomendaciones:
-    build: ./recomendaciones-services
-    ports:
-      - "9097:9097"
-    environment:
-      - JAVA_OPTS=-Xmx512m
-    depends_on:
-      - mysql
-
-  review:
-    build: ./review-services
-    ports:
-      - "9099:9099"
-    environment:
-      - JAVA_OPTS=-Xmx512m
-    depends_on:
-      - mysql
-
-  soporte:
-    build: ./soporte-services
-    ports:
-      - "9098:9098"
-    environment:
-      - JAVA_OPTS=-Xmx512m
-    depends_on:
-      - mysql
-
-  rutinas:
-    build: ./rutinas-services
-    ports:
-      - "9092:9092"
-    environment:
-      - JAVA_OPTS=-Xmx512m
-    depends_on:
-      - mysql
-
-  reservas:
-    build: ./reservas-services
-    ports:
-      - "9093:9093"
-    environment:
-      - JAVA_OPTS=-Xmx512m
-    depends_on:
-      - mysql
-
-  pagos:
-    build: ./pagos-services
-    ports:
-      - "9095:9095"
-    environment:
-      - JAVA_OPTS=-Xmx512m
-    depends_on:
-      - mysql
-
-  seguimientos:
-    build: ./seguimientos-services
-    ports:
-      - "9094:9094"
-    environment:
-      - JAVA_OPTS=-Xmx512m
-    depends_on:
-      - mysql
-
+  # 🗄️ Base de Datos Principal (Unificada)
   mysql:
     image: mysql:8.0
+    container_name: gym-mysql
+    ports:
+      - "3306:3306"
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: gym
-    ports:
-      - "3306:3306"
     volumes:
       - db-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-proot"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
 
+  # 👥 Gestión de Usuarios
+  usuarios-service:
+    build: ./usuarios-services
+    container_name: gym-usuarios
+    ports:
+      - "9091:9091"
+    depends_on:
+      mysql:
+        condition: service_healthy
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/gym?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+
+  # 🏃‍♂️ Rutinas de Ejercicio
+  rutinas-service:
+    build: ./rutinas-services
+    container_name: gym-rutinas
+    ports:
+      - "9092:9092"
+    depends_on:
+      mysql:
+        condition: service_healthy
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/gym?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+
+  # 📅 Reserva de Clases
+  reservas-service:
+    build: ./reservas-services
+    container_name: gym-reservas
+    ports:
+      - "9093:9093"
+    depends_on:
+      mysql:
+        condition: service_healthy
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/gym?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+
+  # 📈 Seguimiento Físico
+  seguimientos-service:
+    build: ./seguimientos-services
+    container_name: gym-seguimientos
+    ports:
+      - "9094:9094"
+    depends_on:
+      mysql:
+        condition: service_healthy
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/gym?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+      - USUARIOS_SERVICE_URL=http://usuarios-service:9091
+
+  # 💳 Pagos y Mensualidades
+  pagos-service:
+    build: ./pagos-services
+    container_name: gym-pagos
+    ports:
+      - "9095:9095"
+    depends_on:
+      mysql:
+        condition: service_healthy
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/gym?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+      - USUARIOS_SERVICE_URL=http://usuarios-service:9091
+      - RESERVAS_SERVICE_URL=http://reservas-service:9093
+
+  # 📦 Inventario del Gimnasio
+  inventario-service:
+    build: ./inventario-services
+    container_name: gym-inventario
+    ports:
+      - "9096:9096"
+    depends_on:
+      mysql:
+        condition: service_healthy
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/gym?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+
+  # 🧠 Recomendaciones Inteligentes
+  recomendaciones-service:
+    build: ./recomendaciones-services
+    container_name: gym-recomendaciones
+    ports:
+      - "9097:9097"
+    depends_on:
+      mysql:
+        condition: service_healthy
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/gym?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+
+  # 🎫 Soporte Técnico
+  soporte-service:
+    build: ./soporte-services
+    container_name: gym-soporte
+    ports:
+      - "9098:9098"
+    depends_on:
+      mysql:
+        condition: service_healthy
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/gym?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+
+  # ⭐ Reseñas y Reviews
+  reviews-service:
+    build: ./review-services
+    container_name: gym-reviews
+    ports:
+      - "9099:9099"
+    depends_on:
+      mysql:
+        condition: service_healthy
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/gym?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+
+  # 🔑 Servicio de Autenticación (Auth)
+  auth-service:
+    build: ./auth-service
+    container_name: gym-auth
+    ports:
+      - "8085:8085"
+    depends_on:
+      mysql:
+        condition: service_healthy
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/gym?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+
+  # 🌐 API Gateway (Punto de entrada único)
+  api-gateway:
+    build: ./api-gateway
+    container_name: gym-gateway
+    ports:
+      - "9090:9090"
+    depends_on:
+      - auth-service
+      - usuarios-service
+      - rutinas-service
+      - reservas-service
+      - seguimientos-service
+      - pagos-service
+      - inventario-service
+      - recomendaciones-service
+      - soporte-service
+      - reviews-service
+
+# ESTE BLOQUE ES VITAL PARA QUE NO EXPLOTE LA BASE DE DATOS
 volumes:
   db-data:
