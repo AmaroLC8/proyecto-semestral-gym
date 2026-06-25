@@ -1,5 +1,6 @@
 server:
   port: 8085
+
 spring:
   application:
     name: auth-service
@@ -12,6 +13,22 @@ spring:
       ddl-auto: update
     show-sql: true
     open-in-view: false
+  liquibase:
+    enabled: false
+  flyway:
+    enabled: false
+
+jwt:
+  secret-key: esta_es_mi_compleja_clave_secreta_de_32_caracteres_minimo
+
+springdoc:
+  api-docs:
+    enabled: true
+    path: /auth/v3/api-docs
+  swagger-ui:
+    enabled: true
+    path: /doc/swagger-ui.html
+
 logging:
   level:
     com.grupito.auth_service: INFO

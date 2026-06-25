@@ -19,37 +19,42 @@ spring:
             - Path=/api/usuarios/**
           filters:
             - StripPrefix=1
+            
         - id: rutinas-route
           uri: http://rutinas-service:9092
           predicates:
             - Path=/api/rutinas/**
           filters:
             - StripPrefix=1
+            
         - id: reservas-route
           uri: http://reservas-service:9093
           predicates:
             - Path=/api/reservas/**
           filters:
             - StripPrefix=1
+            
         - id: seguimientos-route
           uri: http://seguimientos-service:9094
           predicates:
             - Path=/api/seguimientos/**
           filters:
             - StripPrefix=1
+            
         - id: pagos-route
           uri: http://pagos-service:9095
           predicates:
             - Path=/api/pagos/**
           filters:
             - StripPrefix=1
-<<<<<<< HEAD
+            
         - id: inventario-route
           uri: http://inventario-service:9096
           predicates:
             - Path=/api/inventario/**
           filters:
             - StripPrefix=1
+            
         # Servicios finales
         - id: recomendaciones-route
           uri: http://recomendaciones-service:9097
@@ -57,69 +62,50 @@ spring:
             - Path=/api/recomendaciones/**
           filters:
             - StripPrefix=1
+            
         - id: soporte-route
           uri: http://soporte-service:9098
           predicates:
             - Path=/api/soporte/**
           filters:
             - StripPrefix=1
+            
         - id: reviews-route
           uri: http://reviews-service:9099
           predicates:
             - Path=/api/reviews/**
           filters:
             - StripPrefix=1
+            
         - id: auth-route
           uri: http://auth-service:8085
           predicates:
             - Path=/api/auth/**
           filters:
             - StripPrefix=1
-=======
 
-        - id: inventario-service
-          uri: http://localhost:9096
-          predicates:
-            - Path=/inventario/**
-
-        - id: recomendaciones-service
-          uri: http://localhost:9097
-          predicates:
-            - Path=/recomendaciones/**
-
-        - id: soporte-service
-          uri: http://localhost:9098
-          predicates:
-            - Path=/soporte/**
-
-        - id: review-service
-          uri: http://localhost:9099
-          predicates:
-            - Path=/reviews/**
-
+# ¡ESTA ES LA MAGIA DEL DESPLEGABLE!
 springdoc:
   swagger-ui:
-  
-    enabled: true
+    path: /doc/swagger-ui.html
     urls:
-      - name: "Modulo 01: Autenticacion (Auth)"
-        url: /auth/v3/api-docs
-      - name: "Modulo 02: Gestion de Usuarios"
-        url: /usuarios/v3/api-docs
-      - name: "Modulo 03: Rutinas de Ejercicio"
-        url: /rutinas/v3/api-docs
-      - name: "Modulo 04: Reserva de Clases"
-        url: /reservas/v3/api-docs
-      - name: "Modulo 05: Seguimiento Fisico (Peso/Grasa)"
-        url: /seguimientos/v3/api-docs
-      - name: "Modulo 06: Pagos y Mensualidades"
-        url: /pagos/v3/api-docs
-      - name: "Modulo 07: Inventario del Gym"
-        url: /inventario/v3/api-docs
-      - name: "Modulo 08: Recomendaciones Inteligentes"
-        url: /recomendaciones/v3/api-docs
-      - name: "Modulo 09: Soporte Tecnico (Tickets)"
-        url: /soporte/v3/api-docs
-      - name: "Modulo 10: Resenas y Reviews"
-        url: /reviews/v3/api-docs
->>>>>>> 74d79a67ff6d62b15b8c0b4edb59eec32e8a60e0
+      - name: Autenticación
+        url: /api/auth/v3/api-docs
+      - name: Usuarios
+        url: /api/usuarios/v3/api-docs
+      - name: Rutinas
+        url: /api/rutinas/v3/api-docs
+      - name: Reservas
+        url: /api/reservas/v3/api-docs
+      - name: Seguimientos
+        url: /api/seguimientos/v3/api-docs
+      - name: Pagos
+        url: /api/pagos/v3/api-docs
+      - name: Inventario
+        url: /api/inventario/v3/api-docs
+      - name: Recomendaciones
+        url: /api/recomendaciones/v3/api-docs
+      - name: Soporte
+        url: /api/soporte/v3/api-docs
+      - name: Reviews
+        url: /api/reviews/v3/api-docs

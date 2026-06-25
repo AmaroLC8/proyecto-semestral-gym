@@ -19,6 +19,10 @@ spring:
     enabled: true
     change-log: classpath:db/changelog/db.changelog.sql
 
+# CONFIGURACIÓN CLAVE PARA EL JWT
+jwt:
+  secret-key: esta_es_mi_compleja_clave_secreta_de_32_caracteres_minimo
+
 springdoc:
   api-docs:
     enabled: true

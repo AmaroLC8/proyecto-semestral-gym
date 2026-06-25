@@ -1,28 +1,33 @@
 server:
   port: 9095
+
 spring:
   application:
     name: pagos-services
   datasource:
-    url: jdbc:mysql://gym-mysql:3306/db_pagos?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+    url: jdbc:mysql://mysql:3306/db_pagos?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
     username: root
     password: root
   jpa:
     hibernate:
-      ddl-auto: none
+      ddl-auto: update
     show-sql: true
     properties:
       hibernate:
         format_sql: true
     open-in-view: false
   flyway:
-    enabled: true
-    baseline-on-migrate: true
+    enabled: false 
   liquibase:
     enabled: false
+
+jwt:
+  secret-key: esta_es_mi_compleja_clave_secreta_de_32_caracteres_minimo
+
 urls:
-  usuarios-service: http://usuarios-services:9091/usuarios
-  reservas-service: http://reservas-services:9093/reservas
+  usuarios-service: http://usuarios-service:9091/usuarios
+  reservas-service: http://reservas-service:9093/reservas
+
 springdoc:
   api-docs:
     enabled: true
@@ -30,6 +35,7 @@ springdoc:
   swagger-ui:
     enabled: true
     path: /doc/swagger-ui.html
+
 logging:
   level:
     com.grupito.pagos_services: INFO

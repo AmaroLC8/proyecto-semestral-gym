@@ -1,4 +1,4 @@
-package com.grupito.auth_service.config;
+package com.grupito.auth_service;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
@@ -18,10 +18,12 @@ public class DataLoaderConfig {
             if (userRepository.count() == 0) {
                 User admin = new User();
                 admin.setEmail("admin@gym.com");
-                
                 admin.setPassword(hashService.sha1("123456")); 
+                
+                admin.setRole("ADMIN"); 
+                
                 userRepository.save(admin);
-                System.out.println("✅ Usuario creado por defecto para Swagger/Docker: admin@gym.com / 123456");
+                System.out.println("✅ Usuario creado por defecto para Swagger/Docker: admin@gym.com / 123456 / Rol: ADMIN");
             }
         };
     }
