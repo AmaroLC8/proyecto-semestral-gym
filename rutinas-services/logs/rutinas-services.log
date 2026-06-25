@@ -1,0 +1,28 @@
+23:16:10 INFO  Starting RutinaControllerTest using Java 21.0.8 with PID 22260 (started by MSI GAMING in C:\Users\MSI GAMING\Downloads\proyecto-semestral-gym\rutinas-services)
+23:16:10 INFO  No active profile set, falling back to 1 default profile: "default"
+23:16:13 INFO  Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+23:16:13 INFO  Initializing Spring TestDispatcherServlet ''
+23:16:13 INFO  Initializing Servlet ''
+23:16:13 INFO  Completed initialization in 3 ms
+23:16:13 INFO  Started RutinaControllerTest in 3.946 seconds (process running for 5.512)
+23:20:37 INFO  Starting RutinaControllerTest using Java 21.0.8 with PID 12984 (started by MSI GAMING in C:\Users\MSI GAMING\Downloads\proyecto-semestral-gym\rutinas-services)
+23:20:37 INFO  No active profile set, falling back to 1 default profile: "default"
+23:20:39 INFO  Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+23:20:40 INFO  Initializing Spring TestDispatcherServlet ''
+23:20:40 INFO  Initializing Servlet ''
+23:20:40 INFO  Completed initialization in 3 ms
+23:20:40 INFO  Started RutinaControllerTest in 3.972 seconds (process running for 5.559)
+23:21:45 INFO  Starting RutinaControllerTest using Java 21.0.8 with PID 21196 (started by MSI GAMING in C:\Users\MSI GAMING\Downloads\proyecto-semestral-gym\rutinas-services)
+23:21:45 INFO  No active profile set, falling back to 1 default profile: "default"
+23:21:47 INFO  Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+23:21:48 INFO  Initializing Spring TestDispatcherServlet ''
+23:21:48 INFO  Initializing Servlet ''
+23:21:48 INFO  Completed initialization in 2 ms
+23:21:48 INFO  Started RutinaControllerTest in 4.06 seconds (process running for 5.681)
+23:24:00 INFO  Starting RutinaControllerTest using Java 21.0.8 with PID 21152 (started by MSI GAMING in C:\Users\MSI GAMING\Downloads\proyecto-semestral-gym\rutinas-services)
+23:24:00 INFO  No active profile set, falling back to 1 default profile: "default"
+23:24:02 INFO  Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+23:24:03 INFO  Initializing Spring TestDispatcherServlet ''
+23:24:03 INFO  Initializing Servlet ''
+23:24:03 INFO  Completed initialization in 2 ms
+23:24:03 INFO  Started RutinaControllerTest in 3.841 seconds (process running for 5.414)
