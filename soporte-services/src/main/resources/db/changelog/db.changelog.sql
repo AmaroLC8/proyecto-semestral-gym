@@ -1,4 +1,5 @@
--- liquibase formatted SQL for soporte tickets
+-- liquibase formatted sql
+
 -- changeset carol:create-soporte-table
 CREATE TABLE IF NOT EXISTS soporte (
   id BIGINT AUTO_INCREMENT PRIMARY KEY,

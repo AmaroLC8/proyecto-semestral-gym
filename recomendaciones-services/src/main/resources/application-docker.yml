@@ -5,7 +5,7 @@ spring:
   application:
     name: recomendaciones-services
   datasource:
-    url: jdbc:mysql://gym-mysql:3306/db_recomendaciones?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+    url: jdbc:mysql://mysql:3306/db_recomendaciones?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
     username: root
     password: root
   jpa:
@@ -35,6 +35,8 @@ springdoc:
 logging:
   level:
     com.grupito: INFO
+    org.springframework.web: DEBUG
+    org.springframework.cloud.gateway: DEBUG # Only for your Gateway service
   file:
     name: logs/recomendaciones-services.log
   pattern:

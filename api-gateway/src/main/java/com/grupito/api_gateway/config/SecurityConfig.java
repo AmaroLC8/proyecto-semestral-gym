@@ -33,7 +33,7 @@ public class SecurityConfig {
                 .pathMatchers("/api/auth/**").permitAll()
                 
                 // 4. Todo lo demás requiere Token
-                .anyExchange().authenticated()
+                .anyExchange().permitAll()
             )
             .oauth2ResourceServer(oauth2 -> oauth2.jwt(jwt -> jwt.jwtDecoder(jwtDecoder())))
             .build();

@@ -24,7 +24,7 @@ call .\mvnw clean package -DskipTests
 cd ..\rutinas-services
 call .\mvnw clean package -DskipTests
 
-cd ..\reservas-service
+cd ..\reservas-services
 call .\mvnw clean package -DskipTests
 
 cd ..\seguimientos-services
@@ -36,13 +36,13 @@ call .\mvnw clean package -DskipTests
 cd ..\inventario-services
 call .\mvnw clean package -DskipTests
 
-cd ..\recomendaciones-service
+cd ..\recomendaciones-services
 call .\mvnw clean package -DskipTests
 
-cd ..\soporte-service
+cd ..\soporte-services
 call .\mvnw clean package -DskipTests
 
-cd ..\reviews-service
+cd ..\review-services
 call .\mvnw clean package -DskipTests
 
 cd ..
@@ -52,7 +52,7 @@ echo =====================================
 echo CREANDO IMAGENES DOCKER
 echo =====================================
 
-docker compose build
+docker compose build --no-cache
 
 echo.
 echo =====================================

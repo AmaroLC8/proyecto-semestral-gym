@@ -23,7 +23,7 @@ public class DataLoaderConfig {
                 admin.setRole("ADMIN"); 
                 
                 userRepository.save(admin);
-                System.out.println("✅ Usuario creado por defecto para Swagger/Docker: admin@gym.com / 123456 / Rol: ADMIN");
+                System.out.println("Usuario creado por defecto para Swagger/Docker: admin@gym.com / 123456 / Rol: ADMIN");
             }
         };
     }

@@ -109,3 +109,10 @@ springdoc:
         url: /api/soporte/v3/api-docs
       - name: Reviews
         url: /api/reviews/v3/api-docs
+
+  api-docs:
+    server:
+      url: http://localhost:9090
+
+  org.springframework.web: DEBUG
+  org.springframework.cloud.gateway: DEBUG # Only for your Gateway service

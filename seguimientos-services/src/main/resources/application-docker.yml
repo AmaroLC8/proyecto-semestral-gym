@@ -10,14 +10,15 @@ spring:
     password: root
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
     show-sql: true
     properties:
       hibernate:
         format_sql: true
     open-in-view: false
   liquibase:
-    enabled: false
+    enabled: true
+    change-log: classpath:db/changelog/db.changelog.sql
   flyway:
     enabled: false
 
@@ -39,6 +40,8 @@ springdoc:
 logging:
   level:
     com.grupito: INFO
+    org.springframework.web: DEBUG
+    org.springframework.cloud.gateway: DEBUG
   file:
     name: logs/seguimientos-services.log
   pattern:

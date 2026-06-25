@@ -16,7 +16,7 @@ call .\mvnw clean
 cd ..\rutinas-services
 call .\mvnw clean
 
-cd ..\reservas-service
+cd ..\reservas-services
 call .\mvnw clean
 
 cd ..\seguimientos-services
@@ -28,13 +28,13 @@ call .\mvnw clean
 cd ..\inventario-services
 call .\mvnw clean
 
-cd ..\recomendaciones-service
+cd ..\recomendaciones-services
 call .\mvnw clean
 
-cd ..\soporte-service
+cd ..\soporte-services
 call .\mvnw clean
 
-cd ..\reviews-service
+cd ..\review-services
 call .\mvnw clean
 
 cd ..

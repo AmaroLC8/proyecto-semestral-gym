@@ -4,7 +4,7 @@ spring:
   application:
     name: review-services
   datasource:
-    url: jdbc:mysql://gym-mysql:3306/db_reviews?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+    url: jdbc:mysql://mysql:3306/db_reviews?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
     username: root
     password: root
   jpa:
