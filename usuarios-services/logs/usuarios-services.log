@@ -1,0 +1,22 @@
+20:55:01 INFO  Starting UsuarioControllerTest using Java 21.0.8 with PID 14180 (started by MSI GAMING in C:\Users\MSI GAMING\Downloads\proyecto-semestral-gym\usuarios-services)
+20:55:01 INFO  No active profile set, falling back to 1 default profile: "default"
+20:55:03 INFO  Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+20:55:04 INFO  Initializing Spring TestDispatcherServlet ''
+20:55:04 INFO  Initializing Servlet ''
+20:55:04 INFO  Completed initialization in 3 ms
+20:55:04 INFO  Started UsuarioControllerTest in 4.239 seconds (process running for 5.893)
+20:55:59 INFO  Starting UsuarioControllerTest using Java 21.0.8 with PID 16388 (started by MSI GAMING in C:\Users\MSI GAMING\Downloads\proyecto-semestral-gym\usuarios-services)
+20:55:59 INFO  No active profile set, falling back to 1 default profile: "default"
+20:56:01 INFO  Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+20:56:01 INFO  Initializing Spring TestDispatcherServlet ''
+20:56:01 INFO  Initializing Servlet ''
+20:56:01 INFO  Completed initialization in 2 ms
+20:56:01 INFO  Started UsuarioControllerTest in 3.666 seconds (process running for 5.134)
+21:06:01 INFO  Starting UsuarioControllerTest using Java 21.0.8 with PID 18028 (started by MSI GAMING in C:\Users\MSI GAMING\Downloads\proyecto-semestral-gym\usuarios-services)
+21:06:01 INFO  No active profile set, falling back to 1 default profile: "default"
+21:06:04 INFO  Initializing Spring TestDispatcherServlet ''
+21:06:04 INFO  Initializing Servlet ''
+21:06:04 INFO  Completed initialization in 3 ms
+21:06:04 INFO  Started UsuarioControllerTest in 4.147 seconds (process running for 5.688)
+21:06:05 INFO  Solicitud para crear usuario con correo: amaro@gym.com
+21:06:05 INFO  Usuario creado correctamente con id: 1

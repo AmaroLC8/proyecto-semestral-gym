@@ -27,5 +27,6 @@ public class UsuarioService {
                 .orElseThrow(() -> new ResourceNotFoundException("Usuario no encontrado con id: " + id));
     }
     public void eliminar(Long id) { repo.deleteById(id); }
+    
     public boolean existePorId(Long id) { return repo.existsById(id); }
 }

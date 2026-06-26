@@ -1,0 +1,21 @@
+23:13:15 INFO  Starting ReservaControllerTest using Java 21.0.8 with PID 10620 (started by MSI GAMING in C:\Users\MSI GAMING\Downloads\proyecto-semestral-gym\reservas-services)
+23:13:15 INFO  No active profile set, falling back to 1 default profile: "default"
+23:13:18 INFO  Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+23:13:18 INFO  Initializing Spring TestDispatcherServlet ''
+23:13:18 INFO  Initializing Servlet ''
+23:13:18 INFO  Completed initialization in 2 ms
+23:13:18 INFO  Started ReservaControllerTest in 3.957 seconds (process running for 5.516)
+23:13:37 INFO  Starting ReservaControllerTest using Java 21.0.8 with PID 17404 (started by MSI GAMING in C:\Users\MSI GAMING\Downloads\proyecto-semestral-gym\reservas-services)
+23:13:37 INFO  No active profile set, falling back to 1 default profile: "default"
+23:13:39 INFO  Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+23:13:40 INFO  Initializing Spring TestDispatcherServlet ''
+23:13:40 INFO  Initializing Servlet ''
+23:13:40 INFO  Completed initialization in 2 ms
+23:13:40 INFO  Started ReservaControllerTest in 3.885 seconds (process running for 5.54)
+23:14:01 INFO  Starting ReservaControllerTest using Java 21.0.8 with PID 5144 (started by MSI GAMING in C:\Users\MSI GAMING\Downloads\proyecto-semestral-gym\reservas-services)
+23:14:01 INFO  No active profile set, falling back to 1 default profile: "default"
+23:14:04 INFO  Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+23:14:04 INFO  Initializing Spring TestDispatcherServlet ''
+23:14:04 INFO  Initializing Servlet ''
+23:14:04 INFO  Completed initialization in 2 ms
+23:14:04 INFO  Started ReservaControllerTest in 3.727 seconds (process running for 5.279)

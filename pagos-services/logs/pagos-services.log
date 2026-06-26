@@ -101,3 +101,41 @@ Correct the classpath of your application so that it contains compatible version
 2026-06-20T00:37:50.982-04:00  INFO 18056 --- [pagos-services] [http-nio-9095-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
 2026-06-20T00:48:30.783-04:00  INFO 18056 --- [pagos-services] [http-nio-9095-exec-4] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 605 ms
 2026-06-20T00:50:46.629-04:00  INFO 18056 --- [pagos-services] [http-nio-9095-exec-1] c.g.p.controller.PagoControllerV2        : V2 GET /pagos - Listando pagos
+22:43:50 INFO  Starting PagoControllerTest using Java 21.0.8 with PID 11832 (started by MSI GAMING in C:\Users\MSI GAMING\Downloads\proyecto-semestral-gym\pagos-services)
+22:43:50 INFO  No active profile set, falling back to 1 default profile: "default"
+22:43:54 INFO  Initializing Spring TestDispatcherServlet ''
+22:43:54 INFO  Initializing Servlet ''
+22:43:54 INFO  Completed initialization in 2 ms
+22:43:55 INFO  Started PagoControllerTest in 4.929 seconds (process running for 6.545)
+22:43:55 INFO  Solicitud para crear pago del socio: 0, monto: 0.0
+22:43:55 INFO  Pago creado correctamente con id: 1
+22:55:46 INFO  Starting PagoControllerTest using Java 21.0.8 with PID 13568 (started by MSI GAMING in C:\Users\MSI GAMING\Downloads\proyecto-semestral-gym\pagos-services)
+22:55:46 INFO  No active profile set, falling back to 1 default profile: "default"
+22:55:50 INFO  Initializing Spring TestDispatcherServlet ''
+22:55:50 INFO  Initializing Servlet ''
+22:55:50 INFO  Completed initialization in 1 ms
+22:55:50 INFO  Started PagoControllerTest in 4.952 seconds (process running for 6.636)
+22:55:51 INFO  Solicitud para crear pago del socio: 0, monto: 15000.0
+22:55:51 INFO  Pago creado correctamente con id: 1
+22:58:16 INFO  Starting PagoControllerTest using Java 21.0.8 with PID 12108 (started by MSI GAMING in C:\Users\MSI GAMING\Downloads\proyecto-semestral-gym\pagos-services)
+22:58:16 INFO  No active profile set, falling back to 1 default profile: "default"
+22:58:20 INFO  Initializing Spring TestDispatcherServlet ''
+22:58:20 INFO  Initializing Servlet ''
+22:58:20 INFO  Completed initialization in 4 ms
+22:58:20 INFO  Started PagoControllerTest in 4.962 seconds (process running for 6.645)
+22:58:21 INFO  Solicitud para crear pago del socio: 0, monto: 15000.0
+22:58:21 INFO  Pago creado correctamente con id: 1
+23:02:31 INFO  Starting PagoControllerTest using Java 21.0.8 with PID 11464 (started by MSI GAMING in C:\Users\MSI GAMING\Downloads\proyecto-semestral-gym\pagos-services)
+23:02:31 INFO  No active profile set, falling back to 1 default profile: "default"
+23:02:34 INFO  Initializing Spring TestDispatcherServlet ''
+23:02:34 INFO  Initializing Servlet ''
+23:02:34 INFO  Completed initialization in 3 ms
+23:02:35 INFO  Started PagoControllerTest in 4.727 seconds (process running for 6.353)
+23:03:31 INFO  Starting PagoControllerTest using Java 21.0.8 with PID 13744 (started by MSI GAMING in C:\Users\MSI GAMING\Downloads\proyecto-semestral-gym\pagos-services)
+23:03:31 INFO  No active profile set, falling back to 1 default profile: "default"
+23:03:35 INFO  Initializing Spring TestDispatcherServlet ''
+23:03:35 INFO  Initializing Servlet ''
+23:03:35 INFO  Completed initialization in 3 ms
+23:03:35 INFO  Started PagoControllerTest in 4.847 seconds (process running for 6.466)
+23:03:36 INFO  Solicitud para crear pago del socio: 0, monto: 15000.0
+23:03:36 INFO  Pago creado correctamente con id: 1

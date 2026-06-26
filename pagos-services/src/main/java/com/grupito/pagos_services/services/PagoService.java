@@ -53,7 +53,7 @@ public class PagoService {
         return pagoRepository.findByIdCompra(idCompra);
     }
 
-    // MÉTODOS RESTAURADOS PARA QUE EL CONTROLLER NO FALLE
+
     public List<Pago> buscarPorMetodo(String metodo) {
         return pagoRepository.findByMedioPago(metodo);
     }
