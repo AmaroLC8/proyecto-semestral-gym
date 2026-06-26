@@ -21,9 +21,6 @@ spring:
   liquibase:
     enabled: false
 
-jwt:
-  secret-key: esta_es_mi_compleja_clave_secreta_de_32_caracteres_minimo
-
 urls:
   usuarios-service: http://localhost:9091/usuarios
   reservas-service: http://localhost:9093/reservas

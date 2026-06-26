@@ -39,18 +39,15 @@ public class AuthController {
     @PostMapping("/login")
     public EntityModel<AuthResponseDTO> login(@Valid @RequestBody LoginRequestDTO request) {
         logger.info("POST /auth/login - email: {}", request.getEmail());
-        String token = userService.login(request.getEmail(), request.getPassword());
-        String role  = userService.getRole(request.getEmail());
+        User user = userService.login(request.getEmail(), request.getPassword());
 
         AuthResponseDTO dto = AuthResponseDTO.builder()
                 .status("ok")
-                .token(token)
-                .email(request.getEmail())
-                .role(role)
+                .email(user.getEmail())
+                .role(user.getRole())
                 .build();
 
         return EntityModel.of(dto,
-                linkTo(methodOn(AuthController.class).login(null)).withSelfRel(),
                 linkTo(methodOn(AuthController.class).listarUsuarios()).withRel("usuarios"));
     }
 
@@ -63,14 +60,12 @@ public class AuthController {
 
         AuthResponseDTO dto = AuthResponseDTO.builder()
                 .status("created")
-                .token("")
                 .email(newUser.getEmail())
                 .role(newUser.getRole())
                 .build();
 
         return EntityModel.of(dto,
-                linkTo(methodOn(AuthController.class).register(null)).withSelfRel(),
-                linkTo(methodOn(AuthController.class).login(null)).withRel("login"));
+                linkTo(methodOn(AuthController.class).listarUsuarios()).withRel("usuarios"));
     }
 
     // ── GET /auth/users ───────────────────────────────────────────────────────

@@ -21,9 +21,6 @@ spring:
   flyway:
     enabled: false
 
-jwt:
-  secret-key: esta_es_mi_compleja_clave_secreta_de_32_caracteres_minimo
-
 eureka:
   client:
     service-url:

@@ -17,21 +17,19 @@ public class UserService {
     private static final Logger logger = LoggerFactory.getLogger(UserService.class);
 
     private final UserRepository userRepository;
-    private final JwtService jwtService;
     private final HashService hashService;
 
-    public UserService(UserRepository userRepository, JwtService jwtService, HashService hashService) {
+    public UserService(UserRepository userRepository, HashService hashService) {
         this.userRepository = userRepository;
-        this.jwtService = jwtService;
         this.hashService = hashService;
     }
 
     // ── Autenticación ─────────────────────────────────────────────────────────
 
     /**
-     * Valida credenciales y retorna un JWT. Lanza BadRequestException si fallan.
+     * Valida credenciales y retorna el usuario. Lanza BadRequestException si fallan.
      */
-    public String login(String email, String password) {
+    public User login(String email, String password) {
         logger.info("Intento de login para email: {}", email);
         User user = userRepository.findByEmail(email);
 
@@ -45,7 +43,7 @@ public class UserService {
         }
 
         logger.info("Login exitoso para: {}", email);
-        return jwtService.generateToken(email);
+        return user;
     }
 
     /**

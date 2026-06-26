@@ -4,11 +4,6 @@ server:
 spring:
   application:
     name: api-gateway
-  security:
-    oauth2:
-      resourceserver:
-        jwt:
-          secret-key: esta_es_mi_compleja_clave_secreta_de_32_caracteres_minimo
   cloud:
     gateway:
       routes:

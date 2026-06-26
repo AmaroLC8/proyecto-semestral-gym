@@ -1,13 +1,15 @@
 package com.grupito.pagos_services.services;
 
-import com.grupito.pagos_services.client.ReservaClient;
-import com.grupito.pagos_services.client.UsuarioClient;
-import com.grupito.pagos_services.model.Pago;
-import com.grupito.pagos_services.repository.PagoRepository;
-import org.springframework.stereotype.Service;
-
 import java.util.Date;
 import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.grupito.pagos_services.client.ReservaClient;
+import com.grupito.pagos_services.client.UsuarioClient;
+import com.grupito.pagos_services.exception.ResourceNotFoundException;
+import com.grupito.pagos_services.model.Pago;
+import com.grupito.pagos_services.repository.PagoRepository;
 
 @Service
 public class PagoService {
@@ -40,7 +42,7 @@ public class PagoService {
 
     public Pago obtenerPorId(Long id) {
         return pagoRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Pago no encontrado"));
+                .orElseThrow(() -> new ResourceNotFoundException("Pago no encontrado con ID: " + id));
     }
 
     public boolean existePorId(Long id) {
@@ -60,17 +62,17 @@ public class PagoService {
         return pagoRepository.findByFechaBetween(desde, hasta);
     }
 
-    public Object obtenerUsuarioRemoto(Long idCompra) {
+    public Object obtenerUsuarioRemoto(Long usuarioId) {
         try {
-            return usuarioClient.getUsuarioByIdBlocking(idCompra);
+            return usuarioClient.getUsuarioByIdBlocking(usuarioId);
         } catch (Exception e) {
             return "Servicio Usuarios no disponible temporalmente";
         }
     }
 
-    public Object obtenerReservasRemotas(Long idCompra) {
+    public Object obtenerReservasRemotas(Long socioId) {
         try {
-            return reservaClient.getReservasBySocioBlocking(idCompra);
+            return reservaClient.getReservasBySocioBlocking(socioId);
         } catch (Exception e) {
             return "Servicio Reservas no disponible temporalmente";
         }
