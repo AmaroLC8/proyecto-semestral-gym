@@ -1,48 +1,70 @@
 package com.grupito.reservas_services.controller;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.hateoas.CollectionModel;
+import org.springframework.hateoas.EntityModel;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
+
+import com.grupito.reservas_services.assemblers.ReservaModelAssembler;
 import com.grupito.reservas_services.dto.ReservaDTO;
 import com.grupito.reservas_services.model.Reservas;
 import com.grupito.reservas_services.services.ReservaService;
+
 import jakarta.validation.Valid;
-import org.springframework.hateoas.CollectionModel;
-import org.springframework.hateoas.EntityModel;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-import java.util.List;
-import java.util.stream.Collectors;
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 
 @RestController
 @RequestMapping("/reservas")
 public class ReservaController {
+
+    private static final Logger logger = LoggerFactory.getLogger(ReservaController.class);
+
     private final ReservaService service;
+    private final ReservaModelAssembler assembler;
 
-    public ReservaController(ReservaService service) { this.service = service; }
+    public ReservaController(ReservaService service, ReservaModelAssembler assembler) {
+        this.service = service;
+        this.assembler = assembler;
+    }
 
+    // ── GET /reservas ─────────────────────────────────────────────────────────
     @GetMapping
-    public ResponseEntity<CollectionModel<EntityModel<ReservaDTO>>> listar() {
+    public CollectionModel<EntityModel<ReservaDTO>> listar() {
+        logger.info("GET /reservas - Listando reservas");
         List<EntityModel<ReservaDTO>> reservas = service.listar().stream()
-            .map(r -> EntityModel.of(ReservaDTO.fromModel(r),
-                linkTo(methodOn(ReservaController.class).obtener(r.getId())).withSelfRel()))
-            .collect(Collectors.toList());
-        return ResponseEntity.ok(CollectionModel.of(reservas, linkTo(methodOn(ReservaController.class).listar()).withSelfRel()));
+                .map(ReservaDTO::fromModel)
+                .map(assembler::toModel)
+                .collect(Collectors.toList());
+        return CollectionModel.of(reservas,
+                linkTo(methodOn(ReservaController.class).listar()).withSelfRel());
     }
 
+    // ── GET /reservas/{id} ────────────────────────────────────────────────────
     @GetMapping("/{id}")
-    public ResponseEntity<EntityModel<ReservaDTO>> obtener(@PathVariable Long id) {
-        ReservaDTO dto = ReservaDTO.fromModel(service.obtenerPorId(id));
-        return ResponseEntity.ok(EntityModel.of(dto, linkTo(methodOn(ReservaController.class).obtener(id)).withSelfRel()));
+    public EntityModel<ReservaDTO> obtener(@PathVariable Long id) {
+        logger.info("GET /reservas/{} - Obteniendo reserva", id);
+        return assembler.toModel(ReservaDTO.fromModel(service.obtenerPorId(id)));
     }
 
+    // ── POST /reservas ────────────────────────────────────────────────────────
     @PostMapping
-    public ResponseEntity<EntityModel<ReservaDTO>> crear(@Valid @RequestBody ReservaDTO dto) {
+    @ResponseStatus(HttpStatus.CREATED)
+    public EntityModel<ReservaDTO> crear(@Valid @RequestBody ReservaDTO dto) {
+        logger.info("POST /reservas - Creando reserva para usuarioId={}", dto.getIdUsuario());
         Reservas r = service.guardar(dto.toModel());
-        return ResponseEntity.ok(EntityModel.of(ReservaDTO.fromModel(r), linkTo(methodOn(ReservaController.class).obtener(r.getId())).withSelfRel()));
+        return assembler.toModel(ReservaDTO.fromModel(r));
     }
 
+    // ── DELETE /reservas/{id} ─────────────────────────────────────────────────
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> eliminar(@PathVariable Long id) {
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void eliminar(@PathVariable Long id) {
+        logger.info("DELETE /reservas/{} - Eliminando reserva", id);
         service.eliminar(id);
-        return ResponseEntity.noContent().build();
     }
-}
+}

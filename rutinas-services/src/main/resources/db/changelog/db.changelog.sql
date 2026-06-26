@@ -1,7 +1,7 @@
 -- liquibase formatted sql
 
 -- changeset gymflow:1 endDelimiter:/
-CREATE TABLE rutina (
+CREATE TABLE rutinas (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
     descripcion VARCHAR(255),
@@ -11,7 +11,7 @@ CREATE TABLE rutina (
 /
 
 -- changeset gymflow:2 endDelimiter:/
-INSERT INTO rutina (nombre, descripcion, duracion_minutos, nivel_dificultad) VALUES
+INSERT INTO rutinas (nombre, descripcion, duracion_minutos, nivel_dificultad) VALUES
 ('Full Body A', 'Rutina de cuerpo completo para comenzar.', 60, 'Principiante'),
 ('Hipertrofia Piernas', 'Trabajo enfocado en fuerza e hipertrofia de piernas.', 75, 'Avanzado'),
 ('Torso-Pierna', 'División equilibrada para tren superior e inferior.', 70, 'Intermedio'),

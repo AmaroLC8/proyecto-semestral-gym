@@ -9,6 +9,8 @@ services:
       MYSQL_DATABASE: gym
     volumes:
       - db-data:/var/lib/mysql
+    networks:
+      - gym-network
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-proot"]
       interval: 5s
@@ -25,9 +27,17 @@ services:
         condition: service_healthy
     environment:
       - SPRING_PROFILES_ACTIVE=docker
-      # - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/gym?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
-      # - SPRING_DATASOURCE_USERNAME=root
-      # - SPRING_DATASOURCE_PASSWORD=root
+    networks:
+      - gym-network
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9091/actuator/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
 
   rutinas-service:
     build: ./rutinas-services
@@ -39,9 +49,17 @@ services:
         condition: service_healthy
     environment:
       - SPRING_PROFILES_ACTIVE=docker
-      # - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/gym?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
-      # - SPRING_DATASOURCE_USERNAME=root
-      # - SPRING_DATASOURCE_PASSWORD=root
+    networks:
+      - gym-network
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9092/actuator/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
 
   reservas-service:
     build: ./reservas-services
@@ -53,9 +71,17 @@ services:
         condition: service_healthy
     environment:
       - SPRING_PROFILES_ACTIVE=docker
-      # - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/gym?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
-      # - SPRING_DATASOURCE_USERNAME=root
-      # - SPRING_DATASOURCE_PASSWORD=root
+    networks:
+      - gym-network
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9093/actuator/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
 
   seguimientos-service:
     build: ./seguimientos-services
@@ -67,10 +93,18 @@ services:
         condition: service_healthy
     environment:
       - SPRING_PROFILES_ACTIVE=docker
-      # - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/gym?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
-      # - SPRING_DATASOURCE_USERNAME=root
-      # - SPRING_DATASOURCE_PASSWORD=root
       - USUARIOS_SERVICE_URL=http://usuarios-service:9091
+    networks:
+      - gym-network
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9094/actuator/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
 
   pagos-service:
     build: ./pagos-services
@@ -82,11 +116,19 @@ services:
         condition: service_healthy
     environment:
       - SPRING_PROFILES_ACTIVE=docker
-      # - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/gym?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
-      # - SPRING_DATASOURCE_USERNAME=root
-      # - SPRING_DATASOURCE_PASSWORD=root
       - USUARIOS_SERVICE_URL=http://usuarios-service:9091
       - RESERVAS_SERVICE_URL=http://reservas-service:9093
+    networks:
+      - gym-network
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9095/actuator/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
 
   inventario-service:
     build: ./inventario-services
@@ -98,9 +140,17 @@ services:
         condition: service_healthy
     environment:
       - SPRING_PROFILES_ACTIVE=docker
-      # - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/gym?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
-      # - SPRING_DATASOURCE_USERNAME=root
-      # - SPRING_DATASOURCE_PASSWORD=root
+    networks:
+      - gym-network
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9096/actuator/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
 
   recomendaciones-service:
     build: ./recomendaciones-services
@@ -112,9 +162,17 @@ services:
         condition: service_healthy
     environment:
       - SPRING_PROFILES_ACTIVE=docker
-      # - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/gym?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
-      # - SPRING_DATASOURCE_USERNAME=root
-      # - SPRING_DATASOURCE_PASSWORD=root
+    networks:
+      - gym-network
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9097/actuator/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
 
   soporte-service:
     build: ./soporte-services
@@ -126,9 +184,17 @@ services:
         condition: service_healthy
     environment:
       - SPRING_PROFILES_ACTIVE=docker
-      # - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/gym?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
-      # - SPRING_DATASOURCE_USERNAME=root
-      # - SPRING_DATASOURCE_PASSWORD=root
+    networks:
+      - gym-network
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9098/actuator/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
 
   reviews-service:
     build: ./review-services
@@ -140,9 +206,17 @@ services:
         condition: service_healthy
     environment:
       - SPRING_PROFILES_ACTIVE=docker
-      # - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/gym?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
-      # - SPRING_DATASOURCE_USERNAME=root
-      # - SPRING_DATASOURCE_PASSWORD=root
+    networks:
+      - gym-network
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9099/actuator/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
 
   auth-service:
     build: ./auth-service
@@ -154,9 +228,17 @@ services:
         condition: service_healthy
     environment:
       - SPRING_PROFILES_ACTIVE=docker
-      # - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/gym?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
-      # - SPRING_DATASOURCE_USERNAME=root
-      # - SPRING_DATASOURCE_PASSWORD=root
+    networks:
+      - gym-network
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8085/actuator/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
 
   api-gateway:
     build: ./api-gateway
@@ -164,16 +246,35 @@ services:
     ports:
       - "9090:9090"
     depends_on:
-      - auth-service
-      - recomendaciones-service
-      # - usuarios-service
-      # - rutinas-service
-      # - reservas-service
-      # - seguimientos-service
-      # - pagos-service
-      # - inventario-service
-      # - soporte-service
-      # - reviews-service
+      auth-service:
+        condition: service_started
+      usuarios-service:
+        condition: service_started
+      rutinas-service:
+        condition: service_started
+      reservas-service:
+        condition: service_started
+      seguimientos-service:
+        condition: service_started
+      pagos-service:
+        condition: service_started
+      inventario-service:
+        condition: service_started
+      recomendaciones-service:
+        condition: service_started
+      soporte-service:
+        condition: service_started
+      reviews-service:
+        condition: service_started
+    networks:
+      - gym-network
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
+
+networks:
+  gym-network:
+    driver: bridge
 
 volumes:
   db-data:

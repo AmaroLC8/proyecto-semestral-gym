@@ -1,5 +1,6 @@
 package com.grupito.usuarios_services.services;
 
+import com.grupito.usuarios_services.exception.ResourceNotFoundException;
 import com.grupito.usuarios_services.model.Usuario;
 import com.grupito.usuarios_services.repository.UsuarioRepository;
 import org.springframework.stereotype.Service;
@@ -12,7 +13,10 @@ public class UsuarioService {
 
     public Usuario guardar(Usuario u) { return repo.save(u); }
     public List<Usuario> listar() { return repo.findAll(); }
-    public Usuario obtenerPorId(Long id) { return repo.findById(id).orElse(null); }
+    public Usuario obtenerPorId(Long id) {
+        return repo.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Usuario no encontrado con id: " + id));
+    }
     public void eliminar(Long id) { repo.deleteById(id); }
     public boolean existePorId(Long id) { return repo.existsById(id); }
-}
+}

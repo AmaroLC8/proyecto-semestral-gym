@@ -1,45 +1,94 @@
 package com.grupito.auth_service.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import java.util.List;
+import java.util.stream.Collectors;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.hateoas.CollectionModel;
+import org.springframework.hateoas.EntityModel;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
+
+import com.grupito.auth_service.assemblers.UserModelAssembler;
+import com.grupito.auth_service.dto.AuthResponseDTO;
+import com.grupito.auth_service.dto.LoginRequestDTO;
+import com.grupito.auth_service.dto.RegisterRequestDTO;
+import com.grupito.auth_service.dto.UserDTO;
+import com.grupito.auth_service.model.User;
 import com.grupito.auth_service.service.UserService;
+
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
 
-    @Autowired
-    private UserService userService;
+    private static final Logger logger = LoggerFactory.getLogger(AuthController.class);
 
-    @PostMapping("/login")
-    public java.util.Map<String, String> login(@RequestBody java.util.Map<String, String> request) {
-        String email = request.get("email");
-        String password = request.get("password");
-        String token = userService.login(email, password);
+    private final UserService userService;
+    private final UserModelAssembler assembler;
 
-        java.util.Map<String, String> resp = new java.util.HashMap<>();
-        if (token == null) {
-            resp.put("status", "error");
-            resp.put("token", "");
-        } else {
-            resp.put("status", "ok");
-            resp.put("token", token);
-        }
-        return resp;
+    public AuthController(UserService userService, UserModelAssembler assembler) {
+        this.userService = userService;
+        this.assembler = assembler;
     }
 
-    @PostMapping("/register")
-    public java.util.Map<String, String> register(@RequestBody java.util.Map<String, String> request) {
-        String email = request.get("email");
-        String password = request.get("password");
-        String resultado = userService.register(email, password);
+    // ── POST /auth/login ──────────────────────────────────────────────────────
+    @PostMapping("/login")
+    public EntityModel<AuthResponseDTO> login(@Valid @RequestBody LoginRequestDTO request) {
+        logger.info("POST /auth/login - email: {}", request.getEmail());
+        String token = userService.login(request.getEmail(), request.getPassword());
+        String role  = userService.getRole(request.getEmail());
 
-        java.util.Map<String, String> resp = new java.util.HashMap<>();
-        resp.put("message", resultado);
-        return resp;
+        AuthResponseDTO dto = AuthResponseDTO.builder()
+                .status("ok")
+                .token(token)
+                .email(request.getEmail())
+                .role(role)
+                .build();
+
+        return EntityModel.of(dto,
+                linkTo(methodOn(AuthController.class).login(null)).withSelfRel(),
+                linkTo(methodOn(AuthController.class).listarUsuarios()).withRel("usuarios"));
+    }
+
+    // ── POST /auth/register ───────────────────────────────────────────────────
+    @PostMapping("/register")
+    @ResponseStatus(HttpStatus.CREATED)
+    public EntityModel<AuthResponseDTO> register(@Valid @RequestBody RegisterRequestDTO request) {
+        logger.info("POST /auth/register - email: {}", request.getEmail());
+        User newUser = userService.register(request.getEmail(), request.getPassword());
+
+        AuthResponseDTO dto = AuthResponseDTO.builder()
+                .status("created")
+                .token("")
+                .email(newUser.getEmail())
+                .role(newUser.getRole())
+                .build();
+
+        return EntityModel.of(dto,
+                linkTo(methodOn(AuthController.class).register(null)).withSelfRel(),
+                linkTo(methodOn(AuthController.class).login(null)).withRel("login"));
+    }
+
+    // ── GET /auth/users ───────────────────────────────────────────────────────
+    @GetMapping("/users")
+    public CollectionModel<EntityModel<UserDTO>> listarUsuarios() {
+        logger.info("GET /auth/users - Listando usuarios");
+        List<EntityModel<UserDTO>> users = userService.listar().stream()
+                .map(UserDTO::fromModel)
+                .map(assembler::toModel)
+                .collect(Collectors.toList());
+        return CollectionModel.of(users,
+                linkTo(methodOn(AuthController.class).listarUsuarios()).withSelfRel());
+    }
+
+    // ── GET /auth/users/{id} ──────────────────────────────────────────────────
+    @GetMapping("/users/{id}")
+    public EntityModel<UserDTO> obtenerUsuario(@PathVariable Long id) {
+        logger.info("GET /auth/users/{} - Obteniendo usuario", id);
+        return assembler.toModel(UserDTO.fromModel(userService.obtenerPorId(id)));
     }
 }

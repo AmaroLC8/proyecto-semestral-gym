@@ -1,48 +1,70 @@
 package com.grupito.review_services.controller;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.hateoas.CollectionModel;
+import org.springframework.hateoas.EntityModel;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
+
+import com.grupito.review_services.assemblers.ReviewModelAssembler;
 import com.grupito.review_services.dto.ReviewDTO;
 import com.grupito.review_services.model.Review;
 import com.grupito.review_services.service.ReviewService;
+
 import jakarta.validation.Valid;
-import org.springframework.hateoas.CollectionModel;
-import org.springframework.hateoas.EntityModel;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-import java.util.List;
-import java.util.stream.Collectors;
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 
 @RestController
 @RequestMapping("/reviews")
 public class ReviewController {
+
+    private static final Logger logger = LoggerFactory.getLogger(ReviewController.class);
+
     private final ReviewService service;
+    private final ReviewModelAssembler assembler;
 
-    public ReviewController(ReviewService service) { this.service = service; }
+    public ReviewController(ReviewService service, ReviewModelAssembler assembler) {
+        this.service = service;
+        this.assembler = assembler;
+    }
 
+    // ── GET /reviews ──────────────────────────────────────────────────────────
     @GetMapping
-    public ResponseEntity<CollectionModel<EntityModel<ReviewDTO>>> listar() {
+    public CollectionModel<EntityModel<ReviewDTO>> listar() {
+        logger.info("GET /reviews - Listando reviews");
         List<EntityModel<ReviewDTO>> reviews = service.listar().stream()
-            .map(r -> EntityModel.of(ReviewDTO.fromModel(r),
-                linkTo(methodOn(ReviewController.class).obtener(r.getId())).withSelfRel()))
-            .collect(Collectors.toList());
-        return ResponseEntity.ok(CollectionModel.of(reviews, linkTo(methodOn(ReviewController.class).listar()).withSelfRel()));
+                .map(ReviewDTO::fromModel)
+                .map(assembler::toModel)
+                .collect(Collectors.toList());
+        return CollectionModel.of(reviews,
+                linkTo(methodOn(ReviewController.class).listar()).withSelfRel());
     }
 
+    // ── GET /reviews/{id} ─────────────────────────────────────────────────────
     @GetMapping("/{id}")
-    public ResponseEntity<EntityModel<ReviewDTO>> obtener(@PathVariable Long id) {
-        ReviewDTO dto = ReviewDTO.fromModel(service.obtenerPorId(id));
-        return ResponseEntity.ok(EntityModel.of(dto, linkTo(methodOn(ReviewController.class).obtener(id)).withSelfRel()));
+    public EntityModel<ReviewDTO> obtener(@PathVariable Long id) {
+        logger.info("GET /reviews/{} - Obteniendo review", id);
+        return assembler.toModel(ReviewDTO.fromModel(service.obtenerPorId(id)));
     }
 
+    // ── POST /reviews ─────────────────────────────────────────────────────────
     @PostMapping
-    public ResponseEntity<EntityModel<ReviewDTO>> crear(@Valid @RequestBody ReviewDTO dto) {
+    @ResponseStatus(HttpStatus.CREATED)
+    public EntityModel<ReviewDTO> crear(@Valid @RequestBody ReviewDTO dto) {
+        logger.info("POST /reviews - Creando review para productoId={}", dto.getIdProducto());
         Review r = service.guardar(dto.toModel());
-        return ResponseEntity.ok(EntityModel.of(ReviewDTO.fromModel(r), linkTo(methodOn(ReviewController.class).obtener(r.getId())).withSelfRel()));
+        return assembler.toModel(ReviewDTO.fromModel(r));
     }
 
+    // ── DELETE /reviews/{id} ──────────────────────────────────────────────────
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> eliminar(@PathVariable Long id) {
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void eliminar(@PathVariable Long id) {
+        logger.info("DELETE /reviews/{} - Eliminando review", id);
         service.eliminar(id);
-        return ResponseEntity.noContent().build();
     }
-}
+}

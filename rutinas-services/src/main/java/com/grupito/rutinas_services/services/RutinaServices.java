@@ -1,5 +1,6 @@
 package com.grupito.rutinas_services.services;
 
+import com.grupito.rutinas_services.exception.ResourceNotFoundException;
 import com.grupito.rutinas_services.model.Rutina;
 import com.grupito.rutinas_services.repository.RutinaRepository;
 import org.springframework.stereotype.Service;
@@ -14,5 +15,8 @@ public class RutinaServices {
     public List<Rutina> listar() { return repo.findAll(); }
     public void eliminar(Long id) { repo.deleteById(id); }
     public boolean existePorId(Long id) { return repo.existsById(id); }
-    public Rutina obtenerPorId(Long id) { return repo.findById(id).orElse(null); }
-}
+    public Rutina obtenerPorId(Long id) {
+        return repo.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Rutina no encontrada con id: " + id));
+    }
+}

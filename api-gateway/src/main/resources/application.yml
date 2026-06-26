@@ -114,5 +114,7 @@ springdoc:
     server:
       url: http://localhost:9090
 
-  org.springframework.web: DEBUG
-  org.springframework.cloud.gateway: DEBUG # Only for your Gateway service
+logging:
+  level:
+    org.springframework.web: DEBUG
+    org.springframework.cloud.gateway: DEBUG

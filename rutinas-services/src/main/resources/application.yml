@@ -28,7 +28,7 @@ jwt:
 springdoc:
   api-docs:
     enabled: true
-    path: /rutinas/v3/api-docs
+    path: /v3/api-docs
   swagger-ui:
     enabled: true
     path: /doc/swagger-ui.html

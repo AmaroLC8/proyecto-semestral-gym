@@ -27,4 +27,14 @@ public class SoporteDTO {
                 .descripcion(descripcion)
                 .build();
     }
+
+    public static SoporteDTO fromModel(Soporte s) {
+        if (s == null) return null;
+        return SoporteDTO.builder()
+                .id(s.getId())
+                .usuarioId(s.getUsuarioId())
+                .asunto(s.getAsunto())
+                .descripcion(s.getDescripcion())
+                .build();
+    }
 }

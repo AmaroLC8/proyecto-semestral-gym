@@ -1,18 +1,21 @@
 package com.grupito.recomendaciones_services.controller;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.hateoas.CollectionModel;
+import org.springframework.hateoas.EntityModel;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
+import com.grupito.recomendaciones_services.assemblers.RecomendacionesModelAssembler;
 import com.grupito.recomendaciones_services.dto.RecomendacionesDTO;
 import com.grupito.recomendaciones_services.services.RecomendacionesService;
+
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/recomendaciones")
@@ -21,22 +24,41 @@ public class RecomendacionesController {
     private static final Logger logger = LoggerFactory.getLogger(RecomendacionesController.class);
 
     private final RecomendacionesService recomendacionesService;
+    private final RecomendacionesModelAssembler assembler;
 
-    public RecomendacionesController(RecomendacionesService recomendacionesService) {
+    public RecomendacionesController(RecomendacionesService recomendacionesService,
+                                     RecomendacionesModelAssembler assembler) {
         this.recomendacionesService = recomendacionesService;
+        this.assembler = assembler;
     }
 
+    // ── GET /recomendaciones ──────────────────────────────────────────────────
     @GetMapping
-    public ResponseEntity<List<RecomendacionesDTO>> obtenerRecomendaciones() {
-        logger.info("Solicitud para obtener recomendaciones de entrenamiento");
-        List<RecomendacionesDTO> recomendaciones = recomendacionesService.obtenerRecomendaciones();
-        return ResponseEntity.ok(recomendaciones);
+    public CollectionModel<EntityModel<RecomendacionesDTO>> obtenerRecomendaciones() {
+        logger.info("GET /recomendaciones - Listando recomendaciones");
+        List<EntityModel<RecomendacionesDTO>> recomendaciones = recomendacionesService.obtenerRecomendaciones()
+                .stream()
+                .map(assembler::toModel)
+                .collect(Collectors.toList());
+        return CollectionModel.of(recomendaciones,
+                linkTo(methodOn(RecomendacionesController.class).obtenerRecomendaciones()).withSelfRel());
     }
 
+    // ── GET /recomendaciones/{id} ─────────────────────────────────────────────
+    @GetMapping("/{id}")
+    public EntityModel<RecomendacionesDTO> obtenerPorId(@PathVariable Long id) {
+        logger.info("GET /recomendaciones/{} - Obteniendo recomendación", id);
+        return assembler.toModel(recomendacionesService.obtenerPorId(id));
+    }
+
+    // ── POST /recomendaciones ─────────────────────────────────────────────────
     @PostMapping
-    public ResponseEntity<RecomendacionesDTO> crearRecomendacion(@RequestBody RecomendacionesDTO recomendacionesDto) {
-        logger.info("Solicitud para crear recomendación: {}", recomendacionesDto.getMensaje());
-        RecomendacionesDTO recomendacionGuardada = recomendacionesService.crearRecomendacion(recomendacionesDto);
-        return ResponseEntity.ok(recomendacionGuardada);
+    @ResponseStatus(HttpStatus.CREATED)
+    public EntityModel<RecomendacionesDTO> crearRecomendacion(
+            @Valid @RequestBody RecomendacionesDTO recomendacionesDto) {
+        logger.info("POST /recomendaciones - Creando recomendación: {}", recomendacionesDto.getMensaje());
+        RecomendacionesDTO guardada = recomendacionesService.crearRecomendacion(recomendacionesDto);
+        return assembler.toModel(guardada);
     }
 }
+

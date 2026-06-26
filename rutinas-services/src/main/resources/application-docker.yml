@@ -10,16 +10,15 @@ spring:
     password: root
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
     show-sql: true
     properties:
       hibernate:
         format_sql: true
     open-in-view: false
   liquibase:
-    enabled: false
-  flyway:
-    enabled: false
+    enabled: true
+    change-log: classpath:db/changelog/db.changelog.sql
 
 # CONFIGURACIÓN CLAVE PARA EL JWT
 jwt:
