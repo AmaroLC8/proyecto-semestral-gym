@@ -32,7 +32,6 @@ public class RecomendacionesController {
         this.assembler = assembler;
     }
 
-    // ── GET /recomendaciones ──────────────────────────────────────────────────
     @GetMapping
     public CollectionModel<EntityModel<RecomendacionesDTO>> obtenerRecomendaciones() {
         logger.info("GET /recomendaciones - Listando recomendaciones");
@@ -44,14 +43,12 @@ public class RecomendacionesController {
                 linkTo(methodOn(RecomendacionesController.class).obtenerRecomendaciones()).withSelfRel());
     }
 
-    // ── GET /recomendaciones/{id} ─────────────────────────────────────────────
     @GetMapping("/{id}")
     public EntityModel<RecomendacionesDTO> obtenerPorId(@PathVariable Long id) {
         logger.info("GET /recomendaciones/{} - Obteniendo recomendación", id);
         return assembler.toModel(recomendacionesService.obtenerPorId(id));
     }
 
-    // ── POST /recomendaciones ─────────────────────────────────────────────────
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public EntityModel<RecomendacionesDTO> crearRecomendacion(

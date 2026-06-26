@@ -32,7 +32,6 @@ public class UsuarioController {
         this.assembler = assembler;
     }
 
-    // ── GET /usuarios ─────────────────────────────────────────────────────────
     @GetMapping
     public CollectionModel<EntityModel<UsuarioDTO>> listar() {
         logger.info("GET /usuarios - Listando usuarios");
@@ -44,14 +43,12 @@ public class UsuarioController {
                 linkTo(methodOn(UsuarioController.class).listar()).withSelfRel());
     }
 
-    // ── GET /usuarios/{id} ────────────────────────────────────────────────────
     @GetMapping("/{id}")
     public EntityModel<UsuarioDTO> obtener(@PathVariable Long id) {
         logger.info("GET /usuarios/{} - Obteniendo usuario", id);
         return assembler.toModel(UsuarioDTO.fromModel(service.obtenerPorId(id)));
     }
 
-    // ── POST /usuarios ────────────────────────────────────────────────────────
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public EntityModel<UsuarioDTO> crear(@Valid @RequestBody UsuarioDTO dto) {
@@ -60,11 +57,10 @@ public class UsuarioController {
         return assembler.toModel(UsuarioDTO.fromModel(u));
     }
 
-    // ── DELETE /usuarios/{id} ─────────────────────────────────────────────────
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void eliminar(@PathVariable Long id) {
         logger.info("DELETE /usuarios/{} - Eliminando usuario", id);
         service.eliminar(id);
     }
-}
+}

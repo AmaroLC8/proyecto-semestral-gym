@@ -32,7 +32,6 @@ public class RutinaController {
         this.assembler = assembler;
     }
 
-    // ── GET /rutinas ──────────────────────────────────────────────────────────
     @GetMapping
     public CollectionModel<EntityModel<RutinaDTO>> listar() {
         logger.info("GET /rutinas - Listando rutinas");
@@ -44,14 +43,12 @@ public class RutinaController {
                 linkTo(methodOn(RutinaController.class).listar()).withSelfRel());
     }
 
-    // ── GET /rutinas/{id} ─────────────────────────────────────────────────────
     @GetMapping("/{id}")
     public EntityModel<RutinaDTO> obtener(@PathVariable Long id) {
         logger.info("GET /rutinas/{} - Obteniendo rutina", id);
         return assembler.toModel(RutinaDTO.fromModel(service.obtenerPorId(id)));
     }
 
-    // ── POST /rutinas ─────────────────────────────────────────────────────────
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public EntityModel<RutinaDTO> crear(@Valid @RequestBody RutinaDTO dto) {
@@ -60,11 +57,10 @@ public class RutinaController {
         return assembler.toModel(RutinaDTO.fromModel(r));
     }
 
-    // ── DELETE /rutinas/{id} ──────────────────────────────────────────────────
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void eliminar(@PathVariable Long id) {
         logger.info("DELETE /rutinas/{} - Eliminando rutina", id);
         service.eliminar(id);
     }
-}
+}

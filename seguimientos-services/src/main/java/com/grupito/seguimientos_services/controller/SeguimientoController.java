@@ -32,7 +32,6 @@ public class SeguimientoController {
         this.assembler = assembler;
     }
 
-    // ── GET /seguimientos ─────────────────────────────────────────────────────
     @GetMapping
     public CollectionModel<EntityModel<SeguimientoDTO>> listar() {
         logger.info("GET /seguimientos - Listando seguimientos");
@@ -44,14 +43,12 @@ public class SeguimientoController {
                 linkTo(methodOn(SeguimientoController.class).listar()).withSelfRel());
     }
 
-    // ── GET /seguimientos/{id} ────────────────────────────────────────────────
     @GetMapping("/{id}")
     public EntityModel<SeguimientoDTO> obtener(@PathVariable Long id) {
         logger.info("GET /seguimientos/{} - Obteniendo seguimiento", id);
         return assembler.toModel(SeguimientoDTO.fromModel(service.obtenerPorId(id)));
     }
 
-    // ── POST /seguimientos ────────────────────────────────────────────────────
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public EntityModel<SeguimientoDTO> crear(@Valid @RequestBody SeguimientoDTO dto) {
@@ -60,11 +57,10 @@ public class SeguimientoController {
         return assembler.toModel(SeguimientoDTO.fromModel(s));
     }
 
-    // ── DELETE /seguimientos/{id} ─────────────────────────────────────────────
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void eliminar(@PathVariable Long id) {
         logger.info("DELETE /seguimientos/{} - Eliminando seguimiento", id);
         service.eliminar(id);
     }
-}
+}

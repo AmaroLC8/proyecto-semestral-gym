@@ -17,7 +17,6 @@ public class DataLoader implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         if (repo.count() == 0) {
-            // Producto 1
             Producto p1 = new Producto();
             p1.setNombre("Esterilla");
             p1.setStock(50);
@@ -25,7 +24,6 @@ public class DataLoader implements CommandLineRunner {
             p1.setCategoria("Yoga");
             repo.save(p1);
         
-            // Producto 2
             Producto p2 = new Producto();
             p2.setNombre("Mancuernas");
             p2.setStock(20);

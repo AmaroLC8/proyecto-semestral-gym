@@ -40,7 +40,6 @@ public class ProductoController {
         this.assembler = assembler;
     }
 
-    // ── GET /productos ────────────────────────────────────────────────────────
     @GetMapping
     public CollectionModel<EntityModel<ProductoDTO>> listar() {
         logger.info("GET /productos - Listando productos");
@@ -52,14 +51,12 @@ public class ProductoController {
                 linkTo(methodOn(ProductoController.class).listar()).withSelfRel());
     }
 
-    // ── GET /productos/{id} ───────────────────────────────────────────────────
     @GetMapping("/{id}")
     public EntityModel<ProductoDTO> obtener(@PathVariable Long id) {
         logger.info("GET /productos/{} - Obteniendo producto", id);
         return assembler.toModel(ProductoDTO.fromModel(service.obtenerPorId(id)));
     }
 
-    // ── POST /productos ───────────────────────────────────────────────────────
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public EntityModel<ProductoDTO> crear(@Valid @RequestBody ProductoDTO dto) {
@@ -68,7 +65,6 @@ public class ProductoController {
         return assembler.toModel(ProductoDTO.fromModel(p));
     }
 
-    // ── DELETE /productos/{id} ────────────────────────────────────────────────
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void eliminar(@PathVariable Long id) {

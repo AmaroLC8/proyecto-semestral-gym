@@ -32,7 +32,6 @@ public class ReservaController {
         this.assembler = assembler;
     }
 
-    // ── GET /reservas ─────────────────────────────────────────────────────────
     @GetMapping
     public CollectionModel<EntityModel<ReservaDTO>> listar() {
         logger.info("GET /reservas - Listando reservas");
@@ -44,14 +43,12 @@ public class ReservaController {
                 linkTo(methodOn(ReservaController.class).listar()).withSelfRel());
     }
 
-    // ── GET /reservas/{id} ────────────────────────────────────────────────────
     @GetMapping("/{id}")
     public EntityModel<ReservaDTO> obtener(@PathVariable Long id) {
         logger.info("GET /reservas/{} - Obteniendo reserva", id);
         return assembler.toModel(ReservaDTO.fromModel(service.obtenerPorId(id)));
     }
 
-    // ── POST /reservas ────────────────────────────────────────────────────────
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public EntityModel<ReservaDTO> crear(@Valid @RequestBody ReservaDTO dto) {
@@ -60,11 +57,10 @@ public class ReservaController {
         return assembler.toModel(ReservaDTO.fromModel(r));
     }
 
-    // ── DELETE /reservas/{id} ─────────────────────────────────────────────────
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void eliminar(@PathVariable Long id) {
         logger.info("DELETE /reservas/{} - Eliminando reserva", id);
         service.eliminar(id);
     }
-}
+}

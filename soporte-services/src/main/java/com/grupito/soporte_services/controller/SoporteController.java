@@ -33,7 +33,7 @@ public class SoporteController {
         this.assembler = assembler;
     }
 
-    // ── GET /soporte ──────────────────────────────────────────────────────────
+
     @GetMapping
     public CollectionModel<EntityModel<SoporteDTO>> listar() {
         logger.info("GET /soporte - Listando todos los tickets de soporte");
@@ -45,7 +45,7 @@ public class SoporteController {
                 linkTo(methodOn(SoporteController.class).listar()).withSelfRel());
     }
 
-    // ── GET /soporte/{id} ─────────────────────────────────────────────────────
+
     @GetMapping("/{id}")
     public EntityModel<SoporteDTO> obtenerPorId(@PathVariable Long id) {
         logger.info("GET /soporte/{} - Obteniendo ticket de soporte", id);
@@ -53,7 +53,7 @@ public class SoporteController {
         return assembler.toModel(SoporteDTO.fromModel(soporte));
     }
 
-    // ── GET /soporte/usuario/{usuarioId} ──────────────────────────────────────
+
     @GetMapping("/usuario/{usuarioId}")
     public CollectionModel<EntityModel<SoporteDTO>> listarPorUsuario(@PathVariable Long usuarioId) {
         logger.info("GET /soporte/usuario/{} - Listando tickets por usuario", usuarioId);
@@ -66,7 +66,7 @@ public class SoporteController {
                 linkTo(methodOn(SoporteController.class).listar()).withRel("soporte-collection"));
     }
 
-    // ── POST /soporte ─────────────────────────────────────────────────────────
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public EntityModel<SoporteDTO> crear(@Valid @RequestBody SoporteDTO dto) {
@@ -75,7 +75,7 @@ public class SoporteController {
         return assembler.toModel(SoporteDTO.fromModel(creado));
     }
 
-    // ── PUT /soporte/{id}/responder ────────────────────────────────────────────
+
     @PutMapping("/{id}/responder")
     public EntityModel<SoporteDTO> responder(@PathVariable Long id,
                                              @RequestBody Map<String, String> body) {

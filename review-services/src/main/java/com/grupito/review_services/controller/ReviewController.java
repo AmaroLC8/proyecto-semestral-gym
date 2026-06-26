@@ -32,7 +32,6 @@ public class ReviewController {
         this.assembler = assembler;
     }
 
-    // ── GET /reviews ──────────────────────────────────────────────────────────
     @GetMapping
     public CollectionModel<EntityModel<ReviewDTO>> listar() {
         logger.info("GET /reviews - Listando reviews");
@@ -44,14 +43,12 @@ public class ReviewController {
                 linkTo(methodOn(ReviewController.class).listar()).withSelfRel());
     }
 
-    // ── GET /reviews/{id} ─────────────────────────────────────────────────────
     @GetMapping("/{id}")
     public EntityModel<ReviewDTO> obtener(@PathVariable Long id) {
         logger.info("GET /reviews/{} - Obteniendo review", id);
         return assembler.toModel(ReviewDTO.fromModel(service.obtenerPorId(id)));
     }
 
-    // ── POST /reviews ─────────────────────────────────────────────────────────
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public EntityModel<ReviewDTO> crear(@Valid @RequestBody ReviewDTO dto) {
@@ -60,11 +57,10 @@ public class ReviewController {
         return assembler.toModel(ReviewDTO.fromModel(r));
     }
 
-    // ── DELETE /reviews/{id} ──────────────────────────────────────────────────
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void eliminar(@PathVariable Long id) {
         logger.info("DELETE /reviews/{} - Eliminando review", id);
         service.eliminar(id);
     }
-}
+}
