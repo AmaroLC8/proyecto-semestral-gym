@@ -122,4 +122,4 @@ mvnw test
 
 ## 👥 Equipo
 
-Desarrollado por el **Amaro Lopez y Carolina Garrido** - Proyecto Semestral Gimnasio
+Desarrollado por **Amaro Lopez y Carolina Garrido** - Proyecto Semestral Gimnasio
