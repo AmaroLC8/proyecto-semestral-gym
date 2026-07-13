@@ -6,7 +6,7 @@ Sistema de microservicios para la gestión integral de un gimnasio, desarrollado
 
 | Servicio | Puerto | Descripción |
 |----------|--------|-------------|
-| **api-gateway** | 8080 | API Gateway (Spring Cloud Gateway) - Punto de entrada único |
+| **api-gateway** | 9090 | API Gateway (Spring Cloud Gateway) - Punto de entrada único |
 | **auth-service** | 8085 | Autenticación y registro de usuarios |
 | **usuarios-services** | 9091 | Gestión de usuarios/socios del gimnasio |
 | **inventario-services** | 9092 | Gestión de productos e inventario |
